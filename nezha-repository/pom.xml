@@ -9,7 +9,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>nezha-web</artifactId>
+    <artifactId>nezha-repository</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -19,32 +19,19 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.ifinalframework.nezha</groupId>
+            <artifactId>nezha-entity</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.ifinalframework.boot</groupId>
-            <artifactId>final-boot-starter-web</artifactId>
+            <artifactId>final-boot-starter-mybatis</artifactId>
         </dependency>
         <dependency>
             <groupId>org.ifinalframework.data</groupId>
-            <artifactId>final-data-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.ifinalframework.nezha</groupId>
-            <artifactId>nezha-domain</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-mysql</artifactId>
+            <artifactId>final-data-auto-processor</artifactId>
+            <optional>true</optional>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
-
-
-    <build>
-        <finalName>${artifactId}</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>

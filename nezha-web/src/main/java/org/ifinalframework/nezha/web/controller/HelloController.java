@@ -1,4 +1,4 @@
-package org.ifinalframework.apps.nezha.web.controller;
+package org.ifinalframework.nezha.web.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

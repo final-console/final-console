@@ -1,4 +1,4 @@
-package org.ifinalframework.apps.nezha;
+package org.ifinalframework.nezha;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

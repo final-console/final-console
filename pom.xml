@@ -8,13 +8,16 @@
         <version>1.5.4-SNAPSHOT</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>org.ifinalframework.apps</groupId>
+    <groupId>org.ifinalframework.nezha</groupId>
     <artifactId>final-nezha</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>final-nezha</name>
     <description>final-nezha</description>
     <modules>
+        <module>nezha-entity</module>
+        <module>nezha-repository</module>
+        <module>nezha-domain</module>
         <module>nezha-web</module>
     </modules>
     <properties>
@@ -27,4 +30,28 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.ifinalframework.nezha</groupId>
+                <artifactId>nezha-entity</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.ifinalframework.nezha</groupId>
+                <artifactId>nezha-repository</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.ifinalframework.nezha</groupId>
+                <artifactId>nezha-domain</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.ifinalframework.nezha</groupId>
+                <artifactId>nezha-web</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>
