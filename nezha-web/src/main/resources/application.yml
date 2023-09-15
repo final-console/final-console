@@ -9,6 +9,8 @@ spring:
   security:
     basic:
       enable: true
+    bearer:
+      enable: false
     remember-me:
       enable: true
       always-remember: true

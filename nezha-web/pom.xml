@@ -31,6 +31,10 @@
             <artifactId>nezha-domain</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.ifinalframework.boot</groupId>
+            <artifactId>final-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-mysql</artifactId>
         </dependency>
