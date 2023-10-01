@@ -12,8 +12,8 @@
     <artifactId>final-admin</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>final-nezha</name>
-    <description>final-nezha</description>
+    <name>final-admin</name>
+    <description>final-admin</description>
     <modules>
         <module>admin-entity</module>
         <module>admin-repository</module>

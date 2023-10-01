@@ -68,7 +68,7 @@ jobs:
           registry: ${{ secrets.DOCKER_REGISTRY }}
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          app-name: ${{ env.APP_NAME }}
+          app-name: final-admin
           version: ${{ env.VERSION }}
           image: ${{ env.IMAGE }}
       - name: 部署
