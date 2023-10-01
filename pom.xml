@@ -8,17 +8,17 @@
         <version>1.5.5-SNAPSHOT</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>org.ifinalframework.nezha</groupId>
-    <artifactId>final-nezha</artifactId>
+    <groupId>org.ifinalframework.admin</groupId>
+    <artifactId>final-admin</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>final-nezha</name>
     <description>final-nezha</description>
     <modules>
-        <module>nezha-entity</module>
-        <module>nezha-repository</module>
-        <module>nezha-domain</module>
-        <module>nezha-web</module>
+        <module>admin-entity</module>
+        <module>admin-repository</module>
+        <module>admin-domain</module>
+        <module>admin-web</module>
     </modules>
     <properties>
         <java.version>17</java.version>
@@ -33,23 +33,23 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.ifinalframework.nezha</groupId>
-                <artifactId>nezha-entity</artifactId>
+                <groupId>org.ifinalframework.admin</groupId>
+                <artifactId>admin-entity</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <groupId>org.ifinalframework.nezha</groupId>
-                <artifactId>nezha-repository</artifactId>
+                <groupId>org.ifinalframework.admin</groupId>
+                <artifactId>admin-repository</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <groupId>org.ifinalframework.nezha</groupId>
-                <artifactId>nezha-domain</artifactId>
+                <groupId>org.ifinalframework.admin</groupId>
+                <artifactId>admin-domain</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <groupId>org.ifinalframework.nezha</groupId>
-                <artifactId>nezha-web</artifactId>
+                <groupId>org.ifinalframework.admin</groupId>
+                <artifactId>admin-web</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
         </dependencies>
