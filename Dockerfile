@@ -10,7 +10,7 @@ ENV TZ=Asia/Shanghai
 #设置时区
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo '$TZ' > /etc/timezone
 
-ARG JAR_FILE=nezha-web/target/nezha-web.jar
+ARG JAR_FILE=admin-web/target/admin-web.jar
 COPY ${JAR_FILE} app.jar
 
 ENTRYPOINT ["java","-jar","/app.jar"]
