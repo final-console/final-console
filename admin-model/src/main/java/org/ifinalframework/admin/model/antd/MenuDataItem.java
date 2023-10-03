@@ -20,4 +20,5 @@ public class MenuDataItem implements Serializable {
     private String name;
     private String icon;
     private List<MenuDataItem> routes;
+    private Boolean menuRender;
 }

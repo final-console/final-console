@@ -17,9 +17,16 @@ import lombok.Setter;
 @Getter
 @DomainResource("security-menus")
 public class SecurityMenu extends AbsRecord implements ISort {
+    private String code;
     private String name;
     private String path;
     private String icon;
+
+    /**
+     * 是否渲染菜单，true:渲染，false:不渲染
+     */
+    private Boolean menuRender;
+
     private Long parentId;
     private Integer sortValue;
 }

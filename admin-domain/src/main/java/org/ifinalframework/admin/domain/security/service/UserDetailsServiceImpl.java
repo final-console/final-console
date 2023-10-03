@@ -1,4 +1,4 @@
-package org.ifinalframework.admin.domain.securyity.service;
+package org.ifinalframework.admin.domain.security.service;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import org.ifinalframework.data.query.Query;
-import org.ifinalframework.admin.domain.securyity.SecurityUser;
+import org.ifinalframework.admin.domain.security.SecurityUser;
 import org.ifinalframework.admin.entity.core.User;
 import org.ifinalframework.admin.repository.core.mapper.UserMapper;
 import org.ifinalframework.admin.repository.core.query.QUser;

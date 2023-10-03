@@ -32,7 +32,7 @@ public class SecurityController {
     private SecurityMenuService securityMenuService;
 
     static {
-        ROOT.setKey("/");
+        ROOT.setKey("-1");
         ROOT.setName("根菜单");
         ROOT.setPath("/");
         ROOT.setIcon("smile");

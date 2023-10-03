@@ -23,7 +23,7 @@ spring:
         - 'default:app-versions:create'
     logout:
       enable: true
-    user-class: org.ifinalframework.admin.domain.securyity.SecurityUser
+    user-class: org.ifinalframework.admin.domain.security.SecurityUser
   flyway:
     schemas: admin
     clean-schema-history-on-after-migrate-operation-finish: true

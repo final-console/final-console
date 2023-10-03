@@ -1,4 +1,4 @@
-package org.ifinalframework.admin.domain.securyity;
+package org.ifinalframework.admin.domain.security;
 
 import org.springframework.security.core.CredentialsContainer;
 import org.springframework.security.core.GrantedAuthority;
