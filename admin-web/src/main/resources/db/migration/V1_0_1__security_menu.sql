@@ -1,4 +1,4 @@
-DROP TABLE security_menu;
+DROP TABLE IF EXISTS security_menu;
 CREATE TABLE IF NOT EXISTS security_menu
 (
     id                 BIGINT       NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '流水号',
