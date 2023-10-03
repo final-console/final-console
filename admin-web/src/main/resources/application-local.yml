@@ -8,3 +8,6 @@ spring:
     schemas: admin
     clean-schema-history-on-after-migrate-operation-finish: true
     enabled: true
+logging:
+  level:
+    org.ifinalframework.admin.repository: debug
