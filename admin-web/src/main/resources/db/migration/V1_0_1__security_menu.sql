@@ -21,14 +21,14 @@ CREATE TABLE IF NOT EXISTS security_menu
 );
 
 INSERT INTO security_menu (code, path, name, icon, parent_id, sort_value)
-VALUES ('welcome', '/welcome', '欢迎', 'smile', -1, 10000),
-       ('setting', '/setting', '设置', 'smile', -1, 10000);
+VALUES ('welcome', '/welcome', '欢迎', 'home', -1, 10000),
+       ('setting', '/setting', '设置', 'setting', -1, 10000);
 
 SET @menu_setting = (SELECT id
                      FROM security_menu
                      WHERE code = 'setting');
 INSERT INTO security_menu (code, path, name, icon, menu_render, parent_id)
-VALUES ('setting.menu', '/setting/menu', '菜单设置', 'smile', false, @menu_setting);
+VALUES ('setting.menu', '/setting/menu', '菜单设置', 'setting', false, @menu_setting);
 
 
 
