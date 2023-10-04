@@ -24,6 +24,8 @@ public class ProColumns implements Serializable {
     private Boolean sorter;
     private String defaultSortOrder;
 
+    private Boolean readonly = true;
+
     private Boolean hideInForm;
     private Boolean hideInTable;
     private Boolean hideInSearch;

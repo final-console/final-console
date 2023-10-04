@@ -26,6 +26,11 @@ public class ResourceColumn extends AbsRecord {
     private Boolean sorter;
     private String defaultSortOrder;
 
+    /**
+     * 只读，用于修改时，不可编辑
+     */
+    private Boolean readonly;
+
     private Boolean hideInForm;
     private Boolean hideInTable;
     private Boolean hideInSearch;

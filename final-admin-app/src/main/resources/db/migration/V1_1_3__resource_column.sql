@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS resource_column
     width               INT          NULL     DEFAULT NULL COMMENT '宽度',
     sorter              BOOLEAN      NULL     DEFAULT NULL COMMENT '是否可排序',
     default_sort_order  VARCHAR(200) NULL     DEFAULT NULL COMMENT '默认排序',
+    readonly        BOOLEAN      NOT NULL DEFAULT false COMMENT '只读，修改时不可编辑',
     hide_in_form        BOOLEAN      NOT NULL DEFAULT false COMMENT '在 Form 中隐藏',
     hide_in_table       BOOLEAN      NOT NULL DEFAULT false COMMENT '在 Table 中隐藏',
     hide_in_search      BOOLEAN      NOT NULL DEFAULT false COMMENT '在 Table 的查询表单中隐藏',
@@ -26,29 +27,29 @@ CREATE TABLE IF NOT EXISTS resource_column
 
 
 INSERT INTO resource_column (resource, title, data_index, value_type, width, sorter, default_sort_order, hide_in_form, hide_in_table,
-                             hide_in_search, hide_in_descriptions)
-VALUES ('menus', '排序', 'sort', 'text', 60, null, null, false, false, false, false),
-       ('menus', '#', 'sortValue', 'indexBorder', null, true, 'ascend', false, false, false, false),
-       ('menus', 'ID', 'id', 'number', null, null, null, false, false, false, false),
-       ('menus', '路径', 'path', 'text', null, null, null, false, false, false, false),
-       ('menus', '图标', 'icon', 'icon', 100, null, null, false, false, false, false),
-       ('menus', '名称', 'name', 'text', null, null, null, false, false, false, false),
-       ('menus', '创建时间', 'created', 'dateTime', null, null, null, false, false, false, false),
-       ('menus', '最后修改时间', 'lastModified', 'dateTime', null, null, null, false, false, false, false),
+                             hide_in_search, hide_in_descriptions, readonly)
+VALUES ('menus', '排序', 'sort', 'text', 60, null, null, false, false, false, false, false),
+       ('menus', '#', 'sortValue', 'indexBorder', null, true, 'ascend', false, false, false, false, false),
+       ('menus', 'ID', 'id', 'number', null, null, null, false, false, false, false, false),
+       ('menus', '路径', 'path', 'text', null, null, null, false, false, false, false, false),
+       ('menus', '图标', 'icon', 'icon', 100, null, null, false, false, false, false, false),
+       ('menus', '名称', 'name', 'text', null, null, null, false, false, false, false, false),
+       ('menus', '创建时间', 'created', 'dateTime', null, null, null, false, false, false, false, false),
+       ('menus', '最后修改时间', 'lastModified', 'dateTime', null, null, null, false, false, false, false, false),
 
-       ('authorities', '排序', 'sort', 'text', 60, null, null, false, false, false, false),
-       ('authorities', '#', 'index', 'indexBorder', null, true, null, false, false, false, false),
-       ('authorities', '编码', 'code', 'text', null, null, null, false, false, false, false),
-       ('authorities', '名称', 'name', 'text', null, null, null, false, false, false, false),
-       ('authorities', '创建时间', 'created', 'dateTime', null, null, null, false, false, false, false),
-       ('authorities', '最后修改时间', 'lastModified', 'dateTime', null, null, null, false, false, false, false),
-       ('authorities', '操作', 'option', 'option', null, null, null, false, false, false, true),
+       ('authorities', '排序', 'sort', 'text', 60, null, null, true, false, false, false, false),
+       ('authorities', '#', 'index', 'indexBorder', null, true, null, true, false, false, false, false),
+       ('authorities', '编码', 'code', 'text', null, null, null, false, false, false, false, false),
+       ('authorities', '名称', 'name', 'text', null, null, null, false, false, false, false, false),
+       ('authorities', '创建时间', 'created', 'dateTime', null, null, null, false, false, false, false, true),
+       ('authorities', '最后修改时间', 'lastModified', 'dateTime', null, null, null, false, false, false, false, true),
+       ('authorities', '操作', 'option', 'option', null, null, null, true, false, false, true, false),
 
-       ('roles', 'ID', 'id', 'text', null, true, null, false, false, false, false),
-       ('roles', '编码', 'code', 'text', null, null, null, false, false, false, false),
-       ('roles', '名称', 'name', 'text', null, null, null, false, false, false, false),
-       ('roles', '创建时间', 'created', 'dateTime', null, null, null, false, false, false, false),
-       ('roles', '最后修改时间', 'lastModified', 'dateTime', null, null, null, false, false, false, false)
+       ('roles', 'ID', 'id', 'text', null, true, null, false, false, false, false, false),
+       ('roles', '编码', 'code', 'text', null, null, null, false, false, false, false, false),
+       ('roles', '名称', 'name', 'text', null, null, null, false, false, false, false, false),
+       ('roles', '创建时间', 'created', 'dateTime', null, null, null, false, false, false, false, false),
+       ('roles', '最后修改时间', 'lastModified', 'dateTime', null, null, null, false, false, false, false,false)
 ;
 
 
