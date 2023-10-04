@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS security_menu;
-CREATE TABLE IF NOT EXISTS security_menu
+DROP TABLE IF EXISTS menu;
+CREATE TABLE IF NOT EXISTS menu
 (
     id                 BIGINT       NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '流水号',
     code               VARCHAR(200) NOT NULL COMMENT '编号',
@@ -20,15 +20,23 @@ CREATE TABLE IF NOT EXISTS security_menu
     yn                 TINYINT      NOT NULL DEFAULT 1 COMMENT '有效标记，1：有效，0：无效'
 );
 
-INSERT INTO security_menu (code, path, name, icon, parent_id, sort_value)
+INSERT INTO menu (code, path, name, icon, parent_id, sort_value)
 VALUES ('welcome', '/welcome', '欢迎', 'home', -1, 10000),
-       ('setting', '/setting', '设置', 'setting', -1, 10000);
+       ('setting', '/setting', '设置', 'setting', -1, 10000),
+       ('data', '/data', '数据中心', 'setting', -1, 10000);
 
 SET @menu_setting = (SELECT id
-                     FROM security_menu
+                     FROM menu
                      WHERE code = 'setting');
-INSERT INTO security_menu (code, path, name, icon, menu_render, parent_id)
+INSERT INTO menu (code, path, name, icon, menu_render, parent_id)
 VALUES ('setting.menu', '/setting/menu', '菜单设置', 'setting', false, @menu_setting);
+
+SET @menu_data = (SELECT id
+                  FROM menu
+                  WHERE code = 'data');
+INSERT INTO menu (code, path, name, icon, menu_render, parent_id)
+VALUES ('data.table', '/data/table', '数据表', 'setting', false, @menu_data),
+       ('data.redis', '/data/redis', '缓存', 'setting', false, @menu_data);
 
 
 

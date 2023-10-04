@@ -1,4 +1,4 @@
-package org.ifinalframework.admin.entity.security;
+package org.ifinalframework.admin.entity.resource;
 
 import org.ifinalframework.core.ISort;
 import org.ifinalframework.data.annotation.AbsRecord;
@@ -15,8 +15,8 @@ import lombok.Setter;
  **/
 @Setter
 @Getter
-@DomainResource("security-menus")
-public class SecurityMenu extends AbsRecord implements ISort {
+@DomainResource("menus")
+public class Menu extends AbsRecord implements ISort {
     private String code;
     private String name;
     private String path;

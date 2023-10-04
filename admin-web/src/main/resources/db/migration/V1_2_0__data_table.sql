@@ -20,13 +20,11 @@ CREATE TABLE IF NOT EXISTS resource_column
 
 
 INSERT INTO resource_column (resource, title, data_index, value_type, width)
-VALUES ('menu', '排序', 'sort', 'text', 60),
-       ('menu', '#', 'index', 'indexBorder', null),
-       ('menu', '路径', 'path', 'text', null),
-       ('menu', '图标', 'icon', 'icon', 100),
-       ('menu', '名称', 'name', 'text', null),
-       ('menu', '创建时间', 'createdFormat', 'dateTime', null),
-       ('menu', '最后修改时间', 'lastModifiedFormat', 'dateTime', null);
+VALUES ('security-menus', '排序', 'sort', 'text', 60),
+       ('security-menus', '#', 'index', 'indexBorder', 60),
+       ('security-menus', '路径', 'path', 'text', null),
+       ('security-menus', '名称', 'name', 'text', null),
+       ('security-menus', '图标', 'icon', 'icon', 100);
 
 
 

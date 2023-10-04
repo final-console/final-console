@@ -1,14 +1,14 @@
-package org.ifinalframework.admin.web.controller.security;
+package org.ifinalframework.admin.web.controller.core;
 
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import org.ifinalframework.admin.domain.security.service.SecurityMenuService;
-import org.ifinalframework.admin.entity.security.SecurityMenu;
+import org.ifinalframework.admin.domain.resource.service.MenuService;
+import org.ifinalframework.admin.entity.resource.Menu;
 import org.ifinalframework.admin.model.antd.MenuDataItem;
-import org.ifinalframework.admin.repository.security.query.QSecurityMenu;
+import org.ifinalframework.admin.repository.resource.query.QMenu;
 import org.ifinalframework.data.query.Query;
 
 import jakarta.annotation.Resource;
@@ -18,19 +18,19 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * SecurityController
+ * 菜单设置
  *
  * @author mik
  * @since 1.5.4
  **/
 @RestController
-@RequestMapping("/api/security")
-public class SecurityController {
+@RequestMapping("/api/menu")
+public class MenuSettingController {
 
     private static final MenuDataItem ROOT = new MenuDataItem();
 
     @Resource
-    private SecurityMenuService securityMenuService;
+    private MenuService menuService;
 
     static {
         ROOT.setKey("-1");
@@ -46,9 +46,8 @@ public class SecurityController {
 
     private List<MenuDataItem> menus(Long parentId) {
 
-        final List<SecurityMenu> securityMenus = securityMenuService.select(new Query().where(QSecurityMenu.parentId.eq(parentId)).asc(QSecurityMenu.sortValue));
+        final List<Menu> securityMenus = menuService.select(new Query().where(QMenu.parentId.eq(parentId)).asc(QMenu.sortValue));
         return securityMenus.stream().map(it -> {
-
 
             final MenuDataItem menuDataItem = new MenuDataItem();
             menuDataItem.setKey(it.getId().toString());
@@ -60,11 +59,13 @@ public class SecurityController {
             if (!CollectionUtils.isEmpty(menus)) {
                 final MenuDataItem root = new MenuDataItem();
                 root.setKey("-" + it.getId().toString());
-                root.setPath(it.getPath() +"/root");
-                root.setName(it.getName() +"-根菜单");
+                root.setPath(it.getPath() + "/root");
+                root.setName(it.getName() + "-根菜单");
                 root.setIcon("root");
-
-                menuDataItem.setRoutes(Stream.concat(Stream.of(root),menus.stream()).collect(Collectors.toList()));
+                final List<MenuDataItem> routes = Stream.concat(Stream.of(root), menus.stream()).collect(Collectors.toList());
+                menuDataItem.setRoutes(routes);
+            } else {
+                menuDataItem.setDisabled(true);
             }
 
 
