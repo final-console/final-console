@@ -25,4 +25,9 @@ public class ResourceColumn extends AbsRecord {
     private Integer width;
     private Boolean sorter;
     private String defaultSortOrder;
+
+    private Boolean hideInForm;
+    private Boolean hideInTable;
+    private Boolean hideInSearch;
+    private Boolean hideInDescriptions;
 }

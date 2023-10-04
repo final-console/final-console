@@ -1,5 +1,6 @@
 package org.ifinalframework.admin.api.controller.core;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,6 +39,7 @@ public class UiController {
         return resourceColumns.stream()
                 .map(it -> {
                     final ProColumns columns = new ProColumns();
+                    BeanUtils.copyProperties(it,columns);
                     columns.setTitle(it.getTitle());
                     columns.setDataIndex(it.getDataIndex().split("\\."));
                     columns.setValueType(it.getValueType());
