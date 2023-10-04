@@ -15,11 +15,9 @@
     <name>final-admin</name>
     <description>final-admin</description>
     <modules>
-        <module>admin-model</module>
-        <module>admin-entity</module>
-        <module>admin-repository</module>
-        <module>admin-domain</module>
-        <module>admin-web</module>
+        <module>final-admin-core</module>
+        <module>final-admin-data</module>
+        <module>final-admin-app</module>
     </modules>
     <properties>
         <java.version>17</java.version>
@@ -55,7 +53,7 @@
             </dependency>
             <dependency>
                 <groupId>org.ifinalframework.admin</groupId>
-                <artifactId>admin-web</artifactId>
+                <artifactId>admin-api</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
         </dependencies>
