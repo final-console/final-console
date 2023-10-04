@@ -36,7 +36,13 @@ VALUES ('menus', '排序', 'sort', 'text', 60, null, null),
        ('authorities', '编码', 'code', 'text', null, null, null),
        ('authorities', '名称', 'name', 'text', null, null, null),
        ('authorities', '创建时间', 'created', 'dateTime', null, null, null),
-       ('authorities', '最后修改时间', 'lastModified', 'dateTime', null, null, null)
+       ('authorities', '最后修改时间', 'lastModified', 'dateTime', null, null, null),
+
+       ('roles', 'ID', 'id', 'text', null, true, null),
+       ('roles', '编码', 'code', 'text', null, null, null),
+       ('roles', '名称', 'name', 'text', null, null, null),
+       ('roles', '创建时间', 'created', 'dateTime', null, null, null),
+       ('roles', '最后修改时间', 'lastModified', 'dateTime', null, null, null)
 ;
 
 
