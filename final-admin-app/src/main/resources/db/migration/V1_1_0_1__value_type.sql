@@ -1,0 +1,60 @@
+DROP TABLE IF EXISTS value_type;
+CREATE TABLE IF NOT EXISTS value_type
+(
+    id                 BIGINT       NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '流水号',
+    code               VARCHAR(200) NOT NULL COMMENT '编号',
+    name               VARCHAR(200) NOT NULL COMMENT '名称',
+    sort_value         INT          NOT NULL DEFAULT 10000 COMMENT '排序值',
+    attributes         JSON         NULL COMMENT '扩展属性',
+    version            INT          NOT NULL DEFAULT 1 COMMENT '版本号',
+    creator_id         BIGINT       NULL     DEFAULT NULL COMMENT '创建人ID',
+    creator_name       VARCHAR(50)  NULL     DEFAULT NULL COMMENT '创建人名称',
+    last_modifier_id   BIGINT       NULL     DEFAULT NULL COMMENT '修改人ID',
+    last_modifier_name VARCHAR(50)  NULL     DEFAULT NULL COMMENT '修改人名称',
+    created            DATETIME     NOT NULL DEFAULT NOW() COMMENT '创建时间',
+    last_modified      DATETIME     NOT NULL DEFAULT NOW() ON UPDATE NOW() COMMENT '最后修改时间',
+    yn                 TINYINT      NOT NULL DEFAULT 1 COMMENT '有效标记，1：有效，0：无效'
+);
+
+INSERT INTO value_type (code, name)
+VALUES ('password', '密码输入框'),
+       ('money', '金额输入框'),
+       ('textarea', '文本域'),
+       ('date', '日期'),
+       ('dateTime', '日期时间'),
+       ('dateWeek', '周'),
+       ('dateMonth', '月'),
+       ('dateQuarter', '季度输入'),
+       ('dateYear', '年份输入'),
+       ('dateRange', '日期区间'),
+       ('dateTimeRange', '日期时间区间'),
+       ('time', '时间'),
+       ('timeRange', '时间区间'),
+       ('text', '文本框'),
+       ('select', '下拉框'),
+       ('treeSelect', '树形下拉框'),
+       ('checkbox', '多选框'),
+       ('rate', '星级组件'),
+       ('radio', '单选框'),
+       ('radioButton', '按钮单选框'),
+       ('progress', '进度条'),
+       ('percent', '百分比组件'),
+       ('digit', '数字输入框'),
+       ('second', '秒格式化'),
+       ('avatar', '头像'),
+       ('code', '代码框'),
+       ('switch', '开关'),
+       ('fromNow', '相对于当前时间'),
+       ('image', '图片'),
+       ('jsonCode', '代码框，但是带了 json 格式化'),
+       ('color', '颜色选择器'),
+       ('cascader', '级联选择器'),
+       ('segmented', '分段器'),
+       ('group', '分组'),
+       ('formList', '表单列表'),
+       ('formSet', '表单集合'),
+       ('divider', '分割线'),
+       ('dependency', '依赖项');
+
+
+

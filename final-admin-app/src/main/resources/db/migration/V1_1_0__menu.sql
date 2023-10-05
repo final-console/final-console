@@ -22,9 +22,16 @@ CREATE TABLE IF NOT EXISTS menu
 
 INSERT INTO menu (code, path, name, icon, parent_id, sort_value)
 VALUES ('welcome', '/welcome', '欢迎', 'home', -1, 10000),
+       ('resources', '/resources', '资源管理', 'setting', -1, 10000),
        ('setting', '/setting', '设置', 'setting', -1, 10000),
        ('security', '/security', '权限管理', 'setting', -1, 10000),
        ('data', '/data', '数据中心', 'setting', -1, 10000);
+
+SET @menu_resources = (SELECT id
+                     FROM menu
+                     WHERE code = 'resources');
+INSERT INTO menu (code, path, name, icon, menu_render, parent_id)
+VALUES ('resources.value-types', '/resources/value-types', '值类型', 'setting', true, @menu_resources);
 
 SET @menu_setting = (SELECT id
                      FROM menu
