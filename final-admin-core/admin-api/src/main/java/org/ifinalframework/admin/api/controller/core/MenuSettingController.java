@@ -63,7 +63,7 @@ public class MenuSettingController {
                 root.setName(it.getName() + "-根菜单");
                 root.setIcon("root");
                 final List<MenuDataItem> routes = Stream.concat(Stream.of(root), menus.stream()).collect(Collectors.toList());
-                menuDataItem.setRoutes(routes);
+                menuDataItem.setChildren(routes);
             }
             return menuDataItem;
         }).collect(Collectors.toList());

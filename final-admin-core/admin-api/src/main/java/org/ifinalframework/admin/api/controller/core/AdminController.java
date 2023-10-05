@@ -47,8 +47,10 @@ public class AdminController {
                     final MenuDataItem menuDataItem = new MenuDataItem();
                     BeanUtils.copyProperties(it, menuDataItem);
                     menuDataItem.setKey(it.getId().toString());
-                    menuDataItem.setIcon(it.getIcon());
-                    menuDataItem.setPath(it.getPath());
+                    // TODO 增加配置
+                    if (Objects.nonNull(it.getIcon())) {
+                        menuDataItem.setIcon("icon-" + it.getIcon());
+                    }
 
                     if (Objects.nonNull(it.getCode())) {
                         // 找到最后一个.后面的内容
@@ -57,9 +59,9 @@ public class AdminController {
                     } else {
                         menuDataItem.setName(it.getName());
                     }
-
-                    menuDataItem.setRoutes(menus(it.getId(), user));
-                    menuDataItem.setMenuRender(it.getMenuRender());
+                    menuDataItem.setChildren(menus(it.getId(), user));
+                    // Antd menuRender 为false时不显示菜单, 为null时显示菜单
+                    menuDataItem.setMenuRender(Boolean.TRUE.equals(it.getHideMenu()) ? false : null);
                     return menuDataItem;
                 })
                 .collect(Collectors.toList());
