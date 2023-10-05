@@ -1,6 +1,7 @@
 package org.ifinalframework.admin.model.antd;
 
 import java.io.Serializable;
+import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -30,4 +31,20 @@ public class ProColumns implements Serializable {
     private Boolean hideInTable;
     private Boolean hideInSearch;
     private Boolean hideInDescriptions;
+    private List<Action> actions;
+
+    /**
+     * Action
+     *
+     * @author mik
+     * @since 1.5.5
+     **/
+    @Getter
+    @Setter
+    public static class Action implements Serializable {
+        private String key;
+        private String name;
+        private String type;
+        private String tips;
+    }
 }

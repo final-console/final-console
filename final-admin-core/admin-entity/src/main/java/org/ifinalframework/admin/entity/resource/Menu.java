@@ -26,6 +26,10 @@ public class Menu extends AbsRecord implements ISort {
      * 是否渲染菜单，true:渲染，false:不渲染
      */
     private Boolean menuRender;
+    /**
+     * 是否在菜单中隐藏，true:隐藏，false:不隐藏
+     */
+    private Boolean hideInMenu;
 
     private Long parentId;
     private Integer sortValue;

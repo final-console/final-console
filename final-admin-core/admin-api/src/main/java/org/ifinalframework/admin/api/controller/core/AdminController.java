@@ -1,5 +1,6 @@
 package org.ifinalframework.admin.api.controller.core;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,6 +45,7 @@ public class AdminController {
         return securityMenus.stream()
                 .map(it -> {
                     final MenuDataItem menuDataItem = new MenuDataItem();
+                    BeanUtils.copyProperties(it, menuDataItem);
                     menuDataItem.setKey(it.getId().toString());
                     menuDataItem.setIcon(it.getIcon());
                     menuDataItem.setPath(it.getPath());

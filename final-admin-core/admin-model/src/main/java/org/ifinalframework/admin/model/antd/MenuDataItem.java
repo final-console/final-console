@@ -21,5 +21,6 @@ public class MenuDataItem implements Serializable {
     private String icon;
     private List<MenuDataItem> routes;
     private Boolean menuRender;
+    private Boolean hideInMenu;
     private Boolean disabled;
 }

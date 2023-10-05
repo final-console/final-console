@@ -1,43 +1,78 @@
-DROP TABLE IF EXISTS resource_column;
-CREATE TABLE IF NOT EXISTS resource_column
+DROP TABLE IF EXISTS `column`;
+CREATE TABLE IF NOT EXISTS `column`
 (
-    id                  BIGINT       NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '流水号',
-    resource            VARCHAR(200) NOT NULL COMMENT '编号',
-    title               VARCHAR(200) NOT NULL COMMENT '标题',
-    data_index          VARCHAR(200) NOT NULL COMMENT '数据索引',
-    value_type          VARCHAR(200) NOT NULL DEFAULT 'text' COMMENT '数据类型',
-    width               INT          NULL     DEFAULT NULL COMMENT '宽度',
-    sorter              BOOLEAN      NULL     DEFAULT NULL COMMENT '是否可排序',
-    default_sort_order  VARCHAR(200) NULL     DEFAULT NULL COMMENT '默认排序',
-    readonly        BOOLEAN      NOT NULL DEFAULT false COMMENT '只读，修改时不可编辑',
-    hide_in_form        BOOLEAN      NOT NULL DEFAULT false COMMENT '在 Form 中隐藏',
-    hide_in_table       BOOLEAN      NOT NULL DEFAULT false COMMENT '在 Table 中隐藏',
-    hide_in_search      BOOLEAN      NOT NULL DEFAULT false COMMENT '在 Table 的查询表单中隐藏',
+    id                   BIGINT       NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '流水号',
+    resource             VARCHAR(200) NOT NULL COMMENT '编号',
+    title                VARCHAR(200) NOT NULL COMMENT '标题',
+    data_index           VARCHAR(200) NOT NULL COMMENT '数据索引',
+    value_type           VARCHAR(200) NOT NULL DEFAULT 'text' COMMENT '数据类型',
+    width                INT          NULL     DEFAULT NULL COMMENT '宽度',
+    sorter               BOOLEAN      NULL     DEFAULT NULL COMMENT '是否可排序',
+    default_sort_order   VARCHAR(200) NULL     DEFAULT NULL COMMENT '默认排序',
+    readonly             BOOLEAN      NOT NULL DEFAULT false COMMENT '只读，修改时不可编辑',
+    hide_in_form         BOOLEAN      NOT NULL DEFAULT false COMMENT '在 Form 中隐藏',
+    hide_in_table        BOOLEAN      NOT NULL DEFAULT false COMMENT '在 Table 中隐藏',
+    hide_in_search       BOOLEAN      NOT NULL DEFAULT false COMMENT '在 Table 的查询表单中隐藏',
     hide_in_descriptions BOOLEAN      NOT NULL DEFAULT false COMMENT '在 descriptions 中隐藏',
-    attributes          JSON         NULL     DEFAULT NULL COMMENT '扩展属性',
-    version             INT          NOT NULL DEFAULT 1 COMMENT '版本号',
-    creator_id          BIGINT       NULL     DEFAULT NULL COMMENT '创建人ID',
-    creator_name        VARCHAR(50)  NULL     DEFAULT NULL COMMENT '创建人名称',
-    last_modifier_id    BIGINT       NULL     DEFAULT NULL COMMENT '修改人ID',
-    last_modifier_name  VARCHAR(50)  NULL     DEFAULT NULL COMMENT '修改人名称',
-    created             DATETIME     NOT NULL DEFAULT NOW() COMMENT '创建时间',
-    last_modified       DATETIME     NOT NULL DEFAULT NOW() ON UPDATE NOW() COMMENT '最后修改时间',
-    yn                  TINYINT      NOT NULL DEFAULT 1 COMMENT '有效标记，1：有效，0：无效'
+    sort_value         INT          NOT NULL DEFAULT 10000 COMMENT '排序值',
+    attributes           JSON         NULL     DEFAULT NULL COMMENT '扩展属性',
+    version              INT          NOT NULL DEFAULT 1 COMMENT '版本号',
+    creator_id           BIGINT       NULL     DEFAULT NULL COMMENT '创建人ID',
+    creator_name         VARCHAR(50)  NULL     DEFAULT NULL COMMENT '创建人名称',
+    last_modifier_id     BIGINT       NULL     DEFAULT NULL COMMENT '修改人ID',
+    last_modifier_name   VARCHAR(50)  NULL     DEFAULT NULL COMMENT '修改人名称',
+    created              DATETIME     NOT NULL DEFAULT NOW() COMMENT '创建时间',
+    last_modified        DATETIME     NOT NULL DEFAULT NOW() ON UPDATE NOW() COMMENT '最后修改时间',
+    yn                   TINYINT      NOT NULL DEFAULT 1 COMMENT '有效标记，1：有效，0：无效'
 );
 
 # ValueTypes
-INSERT INTO resource_column(resource, title, data_index, value_type, width, sorter, default_sort_order, hide_in_form, hide_in_table,
-                             hide_in_search, hide_in_descriptions, readonly)
+INSERT INTO `column`(resource, title, data_index, value_type, width, sorter, default_sort_order, hide_in_form, hide_in_table,
+                     hide_in_search, hide_in_descriptions, readonly)
 VALUES ('value-types', '排序', 'sort', 'text', 60, null, null, false, false, true, false, false),
- ('value-types', '#', 'sortValue', 'indexBorder', 60, null, null, false, false, true, false, false),
- ('value-types', 'ID', 'id', 'text', 60, null, null, false, false, true, false, false),
- ('value-types', '编码', 'code', 'text', null, null, null, false, false, false, false, false),
- ('value-types', '名称', 'name', 'text', null, null, null, false, false, false, false, false),
- ('value-types', '创建时间', 'created', 'dateTime', null, null, null, false, false, true, false, false),
- ('value-types', '最后修改时间', 'lastModified', 'dateTime', null, null, null, false, false, true, false, false);
+       ('value-types', '#', 'sortValue', 'indexBorder', 60, null, null, false, false, true, false, false),
+       ('value-types', 'ID', 'id', 'text', 60, null, null, false, false, true, false, false),
+       ('value-types', '编码', 'code', 'text', null, null, null, false, false, false, false, false),
+       ('value-types', '名称', 'name', 'text', null, null, null, false, false, false, false, false),
+       ('value-types', '创建时间', 'created', 'dateTime', null, null, null, false, false, true, false, false),
+       ('value-types', '最后修改时间', 'lastModified', 'dateTime', null, null, null, false, false, true, false, false);
+
+# DomainEntities
+INSERT INTO `column`(resource, title, data_index, value_type, width, sorter, default_sort_order, hide_in_form, hide_in_table,
+                     hide_in_search, hide_in_descriptions, readonly)
+VALUES ('domain-entities', '排序', 'sort', 'text', 60, null, null, false, false, true, false, false),
+       ('domain-entities', '#', 'sortValue', 'indexBorder', 60, null, null, false, false, true, false, false),
+       ('domain-entities', 'ID', 'id', 'text', 60, null, null, false, false, true, false, false),
+       ('domain-entities', '资源码', 'resource', 'text', null, null, null, false, false, false, false, false),
+       ('domain-entities', '名称', 'name', 'text', null, null, null, false, false, false, false, false),
+       ('domain-entities', '描述', 'description', 'text', null, null, null, false, false, false, false, false),
+       ('domain-entities', '创建时间', 'created', 'dateTime', null, null, null, false, false, true, false, false),
+       ('domain-entities', '最后修改时间', 'lastModified', 'dateTime', null, null, null, false, false, true, false, false);
+
+# Columns
+INSERT INTO `column`(resource, title, data_index, value_type, width, sorter, default_sort_order, hide_in_form, hide_in_table,
+                     hide_in_search, hide_in_descriptions, readonly)
+VALUES ('columns', '排序', 'sort', 'text', 60, null, null, false, false, true, false, false),
+       ('columns', '#', 'sortValue', 'indexBorder', 60, true, 'ascend', false, false, true, false, false),
+       ('columns', '标题', 'title', 'text', null, null, null, false, false, false, false, false),
+       ('columns', 'valueType', 'valueType', 'text', null, null, null, false, false, false, false, false),
+       ('columns', '描述', 'description', 'text', null, null, null, false, false, false, false, false),
+       ('columns', '创建时间', 'created', 'dateTime', null, null, null, false, false, true, false, false),
+       ('columns', '最后修改时间', 'lastModified', 'dateTime', null, null, null, false, false, true, false, false);
+
+INSERT INTO `column`(resource, title, data_index, value_type, width, sorter, default_sort_order, hide_in_form, hide_in_table,
+                     hide_in_search, hide_in_descriptions, readonly)
+VALUES ('actions', '排序', 'sort', 'text', 60, null, null, false, false, true, false, false),
+       ('actions', '#', 'sortValue', 'indexBorder', 60, true, 'ascend', false, false, true, false, false),
+       ('actions', '编码', 'code', 'text', null, null, null, false, false, false, false, false),
+       ('actions', '名称', 'name', 'text', null, null, null, false, false, false, false, false),
+       ('actions', 'Tips', 'tips', 'text', null, null, null, false, false, false, false, false),
+       ('actions', '描述', 'description', 'text', null, null, null, false, false, false, false, false),
+       ('actions', '创建时间', 'created', 'dateTime', null, null, null, false, false, true, false, false),
+       ('actions', '最后修改时间', 'lastModified', 'dateTime', null, null, null, false, false, true, false, false);
 
 
-INSERT INTO resource_column (resource, title, data_index, value_type, width, sorter, default_sort_order, hide_in_form, hide_in_table,
+INSERT INTO `column` (resource, title, data_index, value_type, width, sorter, default_sort_order, hide_in_form, hide_in_table,
                              hide_in_search, hide_in_descriptions, readonly)
 VALUES ('menus', '排序', 'sort', 'text', 60, null, null, false, false, false, false, false),
        ('menus', '#', 'sortValue', 'indexBorder', null, true, 'ascend', false, false, false, false, false),
@@ -91,8 +126,6 @@ VALUES ('menus', '排序', 'sort', 'text', 60, null, null, false, false, false, 
        ('authorities', '依赖项', 'dependency', 'dependency', null, null, null, false, false, false, false, false),
 
 
-
-
        ('authorities', '创建时间', 'created', 'dateTime', null, null, null, true, false, false, false, true),
        ('authorities', '最后修改时间', 'lastModified', 'dateTime', null, null, null, true, false, false, false, true),
        ('authorities', '操作', 'option', 'option', null, null, null, true, false, false, true, false),
@@ -101,7 +134,7 @@ VALUES ('menus', '排序', 'sort', 'text', 60, null, null, false, false, false, 
        ('roles', '编码', 'code', 'text', null, null, null, false, false, false, false, false),
        ('roles', '名称', 'name', 'text', null, null, null, false, false, false, false, false),
        ('roles', '创建时间', 'created', 'dateTime', null, null, null, false, false, false, false, false),
-       ('roles', '最后修改时间', 'lastModified', 'dateTime', null, null, null, false, false, false, false,false)
+       ('roles', '最后修改时间', 'lastModified', 'dateTime', null, null, null, false, false, false, false, false)
 ;
 
 
