@@ -25,6 +25,11 @@ VALUES ('columns', 'view', '查看', 'button','查看'),
        ('columns', 'edit', '编辑', 'button', '编辑'),
        ('columns', 'delete', '删除', 'button', '删除');
 
+INSERT INTO action (resource, code, name, type, tips)
+VALUES ('actions', 'view', '查看', 'button','查看'),
+       ('actions', 'edit', '编辑', 'button', '编辑'),
+       ('actions', 'delete', '删除', 'button', '删除');
+
 
 INSERT INTO action (resource, code, name, type,tips)
 VALUES ('domain-entities', 'view', '查看', 'button',null),

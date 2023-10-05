@@ -21,26 +21,26 @@ CREATE TABLE IF NOT EXISTS menu
     yn                 TINYINT      NOT NULL DEFAULT 1 COMMENT '有效标记，1：有效，0：无效'
 );
 
-INSERT INTO menu (code, path, name, icon, parent_id, sort_value)
-VALUES ('welcome', '/welcome', '欢迎', 'home', -1, 10000),
-       ('resources', '/resources', '资源管理', 'setting', -1, 10000),
-       ('setting', '/setting', '设置', 'setting', -1, 10000),
-       ('security', '/security', '权限管理', 'setting', -1, 10000),
-       ('data', '/data', '数据中心', 'setting', -1, 10000);
+INSERT INTO menu (code, path, name, icon, parent_id,menu_render, sort_value)
+VALUES ('welcome', '/welcome', '欢迎', 'home', -1,true, 10000),
+       ('domain-resources', '/admin/domain-resources', '资源管理', 'setting', -1,true, 10000),
+       ('setting', '/admin/setting', '设置', 'setting', -1, true,10000),
+       ('security', '/admin/security', '权限管理', 'setting', -1, true,10000),
+       ('data', '/data', '数据中心', 'setting', -1, true,10000);
 
-SET @menu_resources = (SELECT id
-                       FROM menu
-                       WHERE code = 'resources');
-INSERT INTO menu (code, path, name, icon, menu_render,hide_in_menu, parent_id)
-VALUES ('resources.value-types', '/resources/value-types', '值类型', 'setting', true,false, @menu_resources),
-       ('resources.domain-entities', '/resources/domain-entities', '领域实体', 'setting', true,false, @menu_resources),
-       ('resources.domain-entities.resource', '/resources/domain-entities/:resource', '领域实体', 'setting', false,true, @menu_resources);
+# SET @menu_resources = (SELECT id
+#                        FROM menu
+#                        WHERE code = 'resources');
+# INSERT INTO menu (code, path, name, icon, menu_render,hide_in_menu, parent_id)
+# VALUES ('resources.value-types', '/admin/resources/value-types', '值类型', 'setting', true,false, @menu_resources),
+#        ('resources.domain-entities', '/admin/resources/domain-entities', '领域实体', 'setting', true,false, @menu_resources),
+#        ('resources.domain-entities.resource', '/admin/resources/domain-entities/:resource', '领域实体', 'setting', false,true, @menu_resources);
 
 SET @menu_setting = (SELECT id
                      FROM menu
                      WHERE code = 'setting');
 INSERT INTO menu (code, path, name, icon, menu_render, parent_id)
-VALUES ('setting.menu', '/setting/menu', '菜单设置', 'setting', false, @menu_setting);
+VALUES ('setting.menu', '/admin/setting/menu', '菜单设置', 'setting', false, @menu_setting);
 
 SET @menu_data = (SELECT id
                   FROM menu
@@ -53,8 +53,8 @@ SET @menu_security = (SELECT id
                       FROM menu
                       WHERE code = 'security');
 INSERT INTO menu (code, path, name, icon, menu_render, parent_id)
-VALUES ('security.authorities', '/security/authorities', '权限码', 'setting', true, @menu_security),
-       ('security.roles', '/security/roles', '角色', 'setting', true, @menu_security);
+VALUES ('security.authorities', '/admin/security/authorities', '权限码', 'setting', true, @menu_security),
+       ('security.roles', '/admin/security/roles', '角色', 'setting', true, @menu_security);
 
 
 
