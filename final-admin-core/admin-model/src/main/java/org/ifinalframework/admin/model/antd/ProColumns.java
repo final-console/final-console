@@ -46,5 +46,6 @@ public class ProColumns implements Serializable {
         private String name;
         private String type;
         private String tips;
+        private String eval;
     }
 }

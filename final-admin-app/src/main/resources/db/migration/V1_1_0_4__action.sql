@@ -6,7 +6,8 @@ CREATE TABLE IF NOT EXISTS `action`
     code               VARCHAR(200) NOT NULL COMMENT '编码',
     name               VARCHAR(200) NOT NULL COMMENT '名称',
     type               VARCHAR(200) NOT NULL COMMENT '类型',
-    tips               VARCHAR(200) NULL DEFAULT NULL COMMENT '提示',
+    tips               VARCHAR(200) NULL     DEFAULT NULL COMMENT '提示',
+    eval               VARCHAR(200) NULL     DEFAULT NULL COMMENT '表达式',
     position           VARCHAR(200) NOT NULL DEFAULT 'tableRow' COMMENT '位置',
     sort_value         INT          NOT NULL DEFAULT 10000 COMMENT '排序值',
     attributes         JSON         NULL     DEFAULT NULL COMMENT '扩展属性',
@@ -21,21 +22,23 @@ CREATE TABLE IF NOT EXISTS `action`
 );
 
 INSERT INTO action (resource, code, name, type, tips)
-VALUES ('columns', 'view', '查看', 'button','查看'),
+VALUES ('columns', 'view', '查看', 'button', '查看'),
        ('columns', 'edit', '编辑', 'button', '编辑'),
        ('columns', 'delete', '删除', 'button', '删除');
 
 INSERT INTO action (resource, code, name, type, tips)
-VALUES ('actions', 'view', '查看', 'button','查看'),
+VALUES ('actions', 'view', '查看', 'button', '查看'),
        ('actions', 'edit', '编辑', 'button', '编辑'),
        ('actions', 'delete', '删除', 'button', '删除');
 
 
-INSERT INTO action (resource, code, name, type,tips)
-VALUES ('domain-entities', 'view', '查看', 'button',null),
-       ('domain-entities', 'edit', '编辑', 'button',null),
-       ('domain-entities', 'delete', '删除', 'button',null),
-       ('domain-entities', 'setting', '配置', 'router-replace','前往配置实体的CRUD');
+INSERT INTO action (resource, code, name, type, tips,eval)
+VALUES ('domain-entities', 'view', '查看', 'button', null,null),
+       ('domain-entities', 'edit', '编辑', 'button', null,null),
+       ('domain-entities', 'delete', '删除', 'button', null,null),
+       ('domain-entities', 'enable', '启用', 'button', null,'entity.yn == 0'),
+       ('domain-entities', 'disable', '禁用', 'button', null,'entity.yn == 1');
+       ;
 
 
 

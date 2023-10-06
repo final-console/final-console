@@ -30,4 +30,6 @@ public class Action extends AbsRecord implements ISort {
     private String type;
     private Integer sortValue;
     private String tips;
+
+    private String eval;
 }

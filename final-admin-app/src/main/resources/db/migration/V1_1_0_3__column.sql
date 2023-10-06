@@ -67,6 +67,7 @@ VALUES ('actions', '排序', 'sort', 'text', 60, null, null, false, false, true,
        ('actions', '编码', 'code', 'text', null, null, null, false, false, false, false, false),
        ('actions', '名称', 'name', 'text', null, null, null, false, false, false, false, false),
        ('actions', 'Tips', 'tips', 'text', null, null, null, false, false, false, false, false),
+       ('actions', '表达式', 'eval', 'code', null, null, null, false, false, false, false, false),
        ('actions', '描述', 'description', 'text', null, null, null, false, false, false, false, false),
        ('actions', '创建时间', 'created', 'dateTime', null, null, null, false, false, true, false, false),
        ('actions', '最后修改时间', 'lastModified', 'dateTime', null, null, null, false, false, true, false, false);
