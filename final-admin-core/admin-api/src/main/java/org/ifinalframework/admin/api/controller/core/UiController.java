@@ -3,6 +3,7 @@ package org.ifinalframework.admin.api.controller.core;
 import org.springframework.beans.BeanUtils;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,13 +14,19 @@ import org.ifinalframework.admin.domain.resource.service.ColumnService;
 import org.ifinalframework.admin.entity.resource.Action;
 import org.ifinalframework.admin.entity.resource.Column;
 import org.ifinalframework.admin.model.antd.ProColumns;
+import org.ifinalframework.admin.model.antd.ToolTip;
 import org.ifinalframework.admin.repository.resource.query.QAction;
 import org.ifinalframework.admin.repository.resource.query.QColumn;
 import org.ifinalframework.data.query.Query;
+import org.ifinalframework.json.Json;
 
 import jakarta.annotation.Resource;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -62,10 +69,19 @@ public class UiController {
             columns.setWidth(it.getWidth());
             columns.setSorter(it.getSorter());
             columns.setDefaultSortOrder(it.getDefaultSortOrder());
+            if (StringUtils.hasText(it.getTipTitle())) {
+                columns.setTooltip(new ToolTip(it.getTipTitle(), it.getTipIcon()));
+            }
+
+            Optional.ofNullable(it.getValueEnum())
+                            .ifPresent(valueEnum -> columns.setValueEnum(
+                                    valueEnum.stream()
+                                            .collect(Collectors.toMap(value -> value.get("code"), Function.identity()))
+                            ));
             return columns;
         }).collect(Collectors.toList());
 
-        if(!CollectionUtils.isEmpty(actions)){
+        if (!CollectionUtils.isEmpty(actions)) {
             final ProColumns actionColumn = new ProColumns();
             actionColumn.setTitle("操作");
             actionColumn.setValueType("option");
