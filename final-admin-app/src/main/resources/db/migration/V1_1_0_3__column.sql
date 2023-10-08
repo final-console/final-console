@@ -45,14 +45,14 @@ VALUES ('value-types', '排序', 'sort', 'text', 60, null, null, false, false, t
 # DomainEntities
 INSERT INTO `column`(resource, title, data_index, value_type, width, sorter, default_sort_order, hide_in_form, hide_in_table,
                      hide_in_search, hide_in_descriptions, readonly)
-VALUES ('domain-entities', '排序', 'sort', 'text', 60, null, null, false, false, true, false, false),
-       ('domain-entities', '#', 'sortValue', 'indexBorder', 60, null, null, false, false, true, false, false),
-       ('domain-entities', 'ID', 'id', 'text', 60, null, null, false, false, true, false, false),
+VALUES ('domain-entities', '排序', 'sort', 'text', 60, null, null, true, false, true, true, false),
+       ('domain-entities', '#', 'sortValue', 'indexBorder', 60, null, null, true, false, true, true, false),
+       ('domain-entities', 'ID', 'id', 'text', 60, null, null, false, false, true, false, true),
        ('domain-entities', '资源码', 'resource', 'select', null, null, null, false, false, false, false, false),
        ('domain-entities', '名称', 'name', 'text', null, null, null, false, false, false, false, false),
        ('domain-entities', '描述', 'description', 'text', null, null, null, false, false, false, false, false),
-       ('domain-entities', '创建时间', 'created', 'dateTime', null, null, null, false, false, true, false, false),
-       ('domain-entities', '最后修改时间', 'lastModified', 'dateTime', null, null, null, false, false, true, false, false);
+       ('domain-entities', '创建时间', 'created', 'dateTime', null, null, null, false, false, true, false, true),
+       ('domain-entities', '最后修改时间', 'lastModified', 'dateTime', null, null, null, false, false, true, false, true);
 
 set @view_value_enums = '[
     {
@@ -76,27 +76,36 @@ set @view_value_enums = '[
 # Columns
 INSERT INTO `column`(resource, title, data_index, value_type, width, sorter, default_sort_order, hide_in_form, hide_in_table,
                      hide_in_search, hide_in_descriptions, readonly, value_enum)
-VALUES ('columns', '排序', 'sort', 'text', 60, null, null, false, false, true, false, false, null),
-       ('columns', '#', 'sortValue', 'indexBorder', 60, true, 'ascend', false, false, true, false, false, null),
+VALUES ('columns', '排序', 'sort', 'text', 60, null, null, true, true, true, true, true, null),
+       ('columns', '#', 'sortValue', 'indexBorder', 60, true, 'ascend', true, false, true, true, false, null),
        ('columns', '标题', 'title', 'text', null, null, null, false, false, false, false, false, null),
        ('columns', 'valueType', 'valueType', 'text', null, null, null, false, false, false, false, false, null),
        ('columns', '视图', 'view', 'select', null, null, null, false, false, false, false, false, @view_value_enums),
        ('columns', '描述', 'description', 'text', null, null, null, false, false, false, false, false, null),
-       ('columns', '创建时间', 'created', 'dateTime', null, null, null, false, false, true, false, false, null),
-       ('columns', '最后修改时间', 'lastModified', 'dateTime', null, null, null, false, false, true, false, false, null);
+       ('columns', '创建时间', 'created', 'dateTime', null, null, null, false, false, true, false, true, null),
+       ('columns', '最后修改时间', 'lastModified', 'dateTime', null, null, null, false, false, true, false, true, null);
+
+set @type_value_enum = '[
+    {
+        "code": "button",
+        "text": "按钮"
+}
+]';
 
 INSERT INTO `column`(resource, title, data_index, value_type, width, sorter, default_sort_order, hide_in_form, hide_in_table,
-                     hide_in_search, hide_in_descriptions, readonly, tip_title, tip_icon)
-VALUES ('actions', '排序', 'sort', 'text', 60, null, null, false, false, true, false, false, null, null),
-       ('actions', '#', 'sortValue', 'indexBorder', 60, true, 'ascend', false, false, true, false, false, null, null),
-       ('actions', '编码', 'code', 'text', null, null, null, false, false, false, false, false, null, null),
-       ('actions', '名称', 'name', 'text', null, null, null, false, false, false, false, false, null, null),
-       ('actions', 'Tips', 'tips', 'text', null, null, null, false, false, false, false, false, null, null),
-       ('actions', '表达式', 'eval', 'code', null, null, null, false, false, false, false, false,
+                     hide_in_search, hide_in_descriptions, readonly, tip_title, tip_icon,value_enum)
+VALUES ('actions', '排序', 'sort', 'text', 60, null, null, false, false, true, false, false, null, null,null),
+       ('actions', '#', 'sortValue', 'indexBorder', 60, true, 'ascend', false, false, true, false, false, null, null,null),
+       ('actions', '资源', 'resource', 'text', null, null, null, false, false, false, false, false, null, null,null),
+       ('actions', '编码', 'code', 'text', null, null, null, false, false, false, false, false, null, null,null),
+       ('actions', '名称', 'name', 'text', null, null, null, false, false, false, false, false, null, null,null),
+       ('actions', '类型', 'type', 'select', null, null, null, false, false, false, false, false, null, null,@type_value_enum),
+       ('actions', 'Tips', 'tips', 'text', null, null, null, false, false, false, false, false, null, null,null),
+       ('actions', '表达式', 'eval', 'code', null, null, null, false, false, false, false, false,null,
         '可操作表达式，您可以使用`entity.属性名`来访问记录属性', null),
-       ('actions', '描述', 'description', 'text', null, null, null, false, false, false, false, false, null, null),
-       ('actions', '创建时间', 'created', 'dateTime', null, null, null, false, false, true, false, false, null, null),
-       ('actions', '最后修改时间', 'lastModified', 'dateTime', null, null, null, false, false, true, false, false, null, null);
+       ('actions', '描述', 'description', 'text', null, null, null, false, false, false, false, false, null, null,null),
+       ('actions', '创建时间', 'created', 'dateTime', null, null, null, false, false, true, false, false, null, null,null),
+       ('actions', '最后修改时间', 'lastModified', 'dateTime', null, null, null, false, false, true, false, false, null, null,null);
 
 
 INSERT INTO `column` (resource, title, data_index, value_type, width, sorter, default_sort_order, hide_in_form, hide_in_table,

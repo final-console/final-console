@@ -1,6 +1,7 @@
 package org.ifinalframework.admin.entity.resource;
 
 import org.ifinalframework.core.ISort;
+import org.ifinalframework.core.lang.Default;
 import org.ifinalframework.data.annotation.AbsRecord;
 import org.ifinalframework.data.annotation.DomainResource;
 
@@ -28,6 +29,7 @@ public class Action extends AbsRecord implements ISort {
     private String name;
     @NotBlank
     private String type;
+    @Default
     private Integer sortValue;
     private String tips;
 

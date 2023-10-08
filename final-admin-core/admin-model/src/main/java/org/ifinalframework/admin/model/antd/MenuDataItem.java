@@ -2,6 +2,7 @@ package org.ifinalframework.admin.model.antd;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -45,7 +46,7 @@ public class MenuDataItem implements Serializable {
     /**
      * 在菜单中隐藏子节点
      */
-    private Boolean hideChildrenInMenu = true;
+    private Boolean hideChildrenInMenu;
     /**
      * 在面包屑中隐藏自己
      */
@@ -58,5 +59,16 @@ public class MenuDataItem implements Serializable {
 
     public Boolean getMenuRender() {
         return Boolean.FALSE.equals(menuRender) ? false : null;
+    }
+
+
+    public String getIcon() {
+        if (Objects.isNull(icon)) {
+            return null;
+        }
+        if (icon.startsWith("icon-")) {
+            return icon;
+        }
+        return "icon-" + icon;
     }
 }

@@ -1,8 +1,12 @@
 package org.ifinalframework.admin.entity.resource;
 
 import org.ifinalframework.core.ISort;
+import org.ifinalframework.core.ITree;
+import org.ifinalframework.core.lang.Transient;
 import org.ifinalframework.data.annotation.AbsRecord;
 import org.ifinalframework.data.annotation.DomainResource;
+
+import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -16,7 +20,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @DomainResource("menus")
-public class Menu extends AbsRecord implements ISort {
+public class Menu extends AbsRecord implements ISort, ITree<Menu> {
     private String code;
     private String name;
     private String path;
@@ -28,5 +32,7 @@ public class Menu extends AbsRecord implements ISort {
     private Boolean hideMenu;
 
     private Long parentId;
+    @Transient
+    private List<Menu> children;
     private Integer sortValue;
 }

@@ -1,6 +1,7 @@
 package org.ifinalframework.admin.entity.resource;
 
 import org.ifinalframework.core.ISort;
+import org.ifinalframework.core.lang.Default;
 import org.ifinalframework.data.annotation.AbsRecord;
 import org.ifinalframework.data.annotation.DomainResource;
 import org.ifinalframework.data.annotation.Json;
@@ -46,22 +47,32 @@ public class Column extends AbsRecord implements ISort {
     private String tipIcon;
     private String dataIndex;
     private String valueType;
+    @Default
     private Integer width;
+    @Default
     private Boolean sorter;
+    @Default
     private String defaultSortOrder;
 
     /**
      * 只读，用于修改时，不可编辑
      */
+    @Default
     private Boolean readonly;
 
+    @Default
     private Boolean filter;
 
+    @Default
     private Boolean hideInForm;
+    @Default
     private Boolean hideInTable;
+    @Default
     private Boolean hideInSearch;
+    @Default
     private Boolean hideInDescriptions;
 
+    @Default
     private Integer sortValue;
     @Json
     private List<Map<String,String>> valueEnum;

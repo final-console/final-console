@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS menu
 
 INSERT INTO menu (code, path, name, icon, parent_id,hide_menu, sort_value)
 VALUES ('welcome', '/welcome', '欢迎', 'home', -1,false, 10000),
-       ('domain-resources', '/admin/domain-resources', '领域资源', 'setting', -1,true, 10000),
+       ('domain-resources', '/admin/domain-resources', '领域资源', 'setting', -1,false, 10000),
        ('setting', '/admin/setting', '设置', 'setting', -1, false,10000),
        ('security', '/admin/security', '权限管理', 'setting', -1, false,10000),
        ('data', '/data', '数据中心', 'setting', -1, false,10000);
@@ -32,7 +32,14 @@ SET @menu_setting = (SELECT id
                      FROM menu
                      WHERE code = 'setting');
 INSERT INTO menu (code, path, name, icon, hide_menu, parent_id)
-VALUES ('setting.menu', '/admin/setting/menu', '菜单设置', 'setting', false, @menu_setting);
+VALUES ('setting.menu', '/admin/setting/menu', '菜单设置', 'setting', false, @menu_setting),
+ ('setting.menu', '/admin/setting/menu2', '菜单设置2', 'setting', false, @menu_setting);
+
+SET @menu_data = (SELECT id
+                     FROM menu
+                     WHERE code = 'data');
+INSERT INTO menu (code, path, name, icon, hide_menu, parent_id)
+VALUES ('data.cache', '/admin/data/cache', '缓存', 'setting', false, @menu_data);
 
 
 

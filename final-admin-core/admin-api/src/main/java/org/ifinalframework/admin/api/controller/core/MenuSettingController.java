@@ -1,5 +1,6 @@
 package org.ifinalframework.admin.api.controller.core;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,17 +28,16 @@ import java.util.stream.Stream;
 @RequestMapping("/api/menu")
 public class MenuSettingController {
 
-    private static final MenuDataItem ROOT = new MenuDataItem();
+    private static final MenuDataItem ROOT = new MenuDataItem() {{
+        setKey("-1");
+        setName("根菜单");
+        setIcon("icon-root");
+        setPath("/");
+    }};
+
 
     @Resource
     private MenuService menuService;
-
-    static {
-        ROOT.setKey("-1");
-        ROOT.setName("根菜单");
-        ROOT.setPath("/");
-        ROOT.setIcon("root");
-    }
 
     @GetMapping("/menus")
     public List<MenuDataItem> menus() {
@@ -45,15 +45,12 @@ public class MenuSettingController {
     }
 
     private List<MenuDataItem> menus(Long parentId) {
-
-        final List<Menu> securityMenus = menuService.select(new Query().where(QMenu.parentId.eq(parentId)).asc(QMenu.sortValue));
-        return securityMenus.stream().map(it -> {
-
+        final List<Menu> menuList = menuService.select(new Query().where(QMenu.parentId.eq(parentId)).asc(QMenu.sortValue));
+        return menuList.stream().map(it -> {
             final MenuDataItem menuDataItem = new MenuDataItem();
+            BeanUtils.copyProperties(it, menuDataItem);
             menuDataItem.setKey(it.getId().toString());
-            menuDataItem.setName(it.getName());
-            menuDataItem.setPath(it.getPath());
-            menuDataItem.setIcon(it.getIcon());
+
             final List<MenuDataItem> menus = menus(it.getId());
 
             if (!CollectionUtils.isEmpty(menus)) {
@@ -62,9 +59,11 @@ public class MenuSettingController {
                 root.setPath(it.getPath() + "/root");
                 root.setName(it.getName() + "-根菜单");
                 root.setIcon("root");
+                root.setHideInMenu(true);
                 final List<MenuDataItem> routes = Stream.concat(Stream.of(root), menus.stream()).collect(Collectors.toList());
                 menuDataItem.setChildren(routes);
             }
+
             return menuDataItem;
         }).collect(Collectors.toList());
     }
