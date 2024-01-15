@@ -73,7 +73,9 @@ jobs:
         with:
           context: ./final-sso/final-sso-app
           push: true
-          tags: final-apps/final-sso-app:${{ env.VERSION }}
+          tags: |
+            ${{ secrets.DOCKER_REGISTRY }}/final-apps/final-sso-app:latest
+            ${{ secrets.DOCKER_REGISTRY }}/final-apps/final-sso-app:${{ env.VERSION }}
       - name: 部署
         uses: final-actions/kuboard-cicd@main
         with:
