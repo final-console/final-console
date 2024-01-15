@@ -85,6 +85,6 @@ jobs:
           cluster: default
           namespace: ifinal
           app-name: final-admin
-          image: final-console/final-sso-app
+          image: ${{ secrets.DOCKER_REGISTRY }}/final-console/final-sso-app
           version: ${{ env.VERSION }}
 
