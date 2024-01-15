@@ -10,16 +10,8 @@
     </parent>
 
     <groupId>org.ifinalframework.console.admin</groupId>
-    <artifactId>final-admin-core</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <packaging>pom</packaging>
-    <modules>
-        <module>admin-model</module>
-        <module>admin-entity</module>
-        <module>admin-repository</module>
-        <module>admin-domain</module>
-        <module>admin-api</module>
-    </modules>
+    <artifactId>final-admin</artifactId>
+
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>

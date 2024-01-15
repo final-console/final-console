@@ -8,16 +8,20 @@
         <version>1.5.6-SNAPSHOT</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>org.ifinalframework.admin</groupId>
-    <artifactId>final-admin</artifactId>
+    <groupId>org.ifinalframework.console</groupId>
+    <artifactId>final-console</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>final-admin</name>
-    <description>final-admin</description>
+    <name>final-console</name>
+    <description>final-console</description>
     <modules>
-        <module>final-admin-core</module>
-        <module>final-admin-data</module>
-        <module>final-admin-app</module>
+<!--        <module>final-admin-core</module>-->
+<!--        <module>final-admin-data</module>-->
+<!--        <module>final-admin-app</module>-->
+        <module>final-admin</module>
+        <module>final-sso</module>
+        <module>final-app</module>
+        <module>final-sso/final-sso-model</module>
     </modules>
     <properties>
         <java.version>17</java.version>

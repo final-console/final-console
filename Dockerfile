@@ -10,7 +10,7 @@ ENV TZ=Asia/Shanghai
 #设置时区
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo '$TZ' > /etc/timezone
 
-ARG JAR_FILE=final-admin-app/target/final-admin-app.jar
+ARG JAR_FILE=final-sso/final-sso-app/target/final-sso-app.jar
 COPY ${JAR_FILE} app.jar
 
 ENTRYPOINT ["java","-jar","/app.jar"]

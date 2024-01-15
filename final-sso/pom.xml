@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.ifinalframework.console</groupId>
+        <artifactId>final-console</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <groupId>org.ifinalframework.console.sso</groupId>
+    <artifactId>final-sso</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>final-sso-entity</module>
+        <module>final-sso-repository</module>
+        <module>final-sso-domain</module>
+        <module>final-sso-api</module>
+        <module>final-sso-app</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.ifinalframework.console.sso</groupId>
+                <artifactId>final-sso-entity</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.ifinalframework.console.sso</groupId>
+                <artifactId>final-sso-repository</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.ifinalframework.console.sso</groupId>
+                <artifactId>final-sso-domain</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.ifinalframework.console.sso</groupId>
+                <artifactId>final-sso-api</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.ifinalframework.console.sso</groupId>
+                <artifactId>final-sso-app</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>

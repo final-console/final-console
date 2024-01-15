@@ -4,12 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.ifinalframework.console</groupId>
-        <artifactId>final-console</artifactId>
+        <groupId>org.ifinalframework.console.sso</groupId>
+        <artifactId>final-sso</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>final-admin-app</artifactId>
+    <groupId>org.ifinalframework.console.sso</groupId>
+    <artifactId>final-sso-repository</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -19,24 +20,19 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.ifinalframework.admin</groupId>
-            <artifactId>admin-api</artifactId>
+            <groupId>org.ifinalframework.console.sso</groupId>
+            <artifactId>final-sso-entity</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-mysql</artifactId>
+            <groupId>org.ifinalframework.boot</groupId>
+            <artifactId>final-boot-starter-mybatis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.ifinalframework.data</groupId>
+            <artifactId>final-data-auto-processor</artifactId>
+            <optional>true</optional>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
-
-
-    <build>
-        <finalName>${artifactId}</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>
