@@ -62,15 +62,19 @@ jobs:
             ]
       - name: Build with Maven
         run: mvn -B package --file pom.xml -Dmaven.test.skip=true
-      - name: 构建Docker镜像
-        uses: final-actions/docker@main
+      - name: 登录Docker镜像源
+        uses: docker/login-action@main
         with:
           registry: ${{ secrets.DOCKER_REGISTRY }}
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          app-name: final-admin
-          version: ${{ env.VERSION }}
-          image: ${{ env.IMAGE }}
+      - name: Docker Build And Push
+        uses: docker/build-push-action@v5
+        with:
+          context: ./final-sso/final-sso-app/target
+          dockerfile: Dockerfile
+          push: true
+          tags: final-apps/final-sso-app:${{ env.VERSION }}
       - name: 部署
         uses: final-actions/kuboard-cicd@main
         with:
@@ -80,6 +84,6 @@ jobs:
           cluster: default
           namespace: ifinal
           app-name: final-admin
-          image: ${{ env.IMAGE }}
+          image: final-console/final-sso-app
           version: ${{ env.VERSION }}
 
