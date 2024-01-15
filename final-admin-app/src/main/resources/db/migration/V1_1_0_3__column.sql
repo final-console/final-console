@@ -3,10 +3,10 @@ CREATE TABLE IF NOT EXISTS `column`
 (
     id                   BIGINT       NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '流水号',
     resource             VARCHAR(200) NOT NULL COMMENT '编号',
+    view                 VARCHAR(200) NOT NULL DEFAULT 'list' COMMENT '视图',
     title                VARCHAR(200) NOT NULL COMMENT '标题',
     data_index           VARCHAR(200) NOT NULL COMMENT '数据索引',
     value_type           VARCHAR(200) NOT NULL DEFAULT 'text' COMMENT '数据类型',
-    view           VARCHAR(200) NOT NULL DEFAULT 'list' COMMENT '数据类型',
     tip_title            VARCHAR(200) NULL     DEFAULT NULL COMMENT '提示标题',
     tip_icon             VARCHAR(200) NULL     DEFAULT NULL COMMENT '提示图标',
     width                INT          NULL     DEFAULT NULL COMMENT '宽度',
@@ -19,7 +19,8 @@ CREATE TABLE IF NOT EXISTS `column`
     hide_in_search       BOOLEAN      NOT NULL DEFAULT false COMMENT '在 Table 的查询表单中隐藏',
     hide_in_descriptions BOOLEAN      NOT NULL DEFAULT false COMMENT '在 descriptions 中隐藏',
     sort_value           INT          NOT NULL DEFAULT 10000 COMMENT '排序值',
-    value_enum            JSON         NULL     DEFAULT NULL COMMENT '枚举值',
+    value_enum           JSON         NULL     DEFAULT NULL COMMENT '枚举值',
+    parent_id            BIGINT       NOT NULL DEFAULT -1 COMMENT '父级ID',
     attributes           JSON         NULL     DEFAULT NULL COMMENT '扩展属性',
     version              INT          NOT NULL DEFAULT 1 COMMENT '版本号',
     creator_id           BIGINT       NULL     DEFAULT NULL COMMENT '创建人ID',
@@ -43,16 +44,19 @@ VALUES ('value-types', '排序', 'sort', 'text', 60, null, null, false, false, t
        ('value-types', '最后修改时间', 'lastModified', 'dateTime', null, null, null, false, false, true, false, false);
 
 # DomainEntities
-INSERT INTO `column`(resource, title, data_index, value_type, width, sorter, default_sort_order, hide_in_form, hide_in_table,
+INSERT INTO `column`(resource, view, title, data_index, value_type, width, sorter, default_sort_order, hide_in_form, hide_in_table,
                      hide_in_search, hide_in_descriptions, readonly)
-VALUES ('domain-entities', '排序', 'sort', 'text', 60, null, null, true, false, true, true, false),
-       ('domain-entities', '#', 'sortValue', 'indexBorder', 60, null, null, true, false, true, true, false),
-       ('domain-entities', 'ID', 'id', 'text', 60, null, null, false, false, true, false, true),
-       ('domain-entities', '资源码', 'resource', 'select', null, null, null, false, false, false, false, false),
-       ('domain-entities', '名称', 'name', 'text', null, null, null, false, false, false, false, false),
-       ('domain-entities', '描述', 'description', 'text', null, null, null, false, false, false, false, false),
-       ('domain-entities', '创建时间', 'created', 'dateTime', null, null, null, false, false, true, false, true),
-       ('domain-entities', '最后修改时间', 'lastModified', 'dateTime', null, null, null, false, false, true, false, true);
+VALUES ('domain-entities', 'create', '资源码', 'resource', 'text', null, null, null, false, false, false, false, false),
+       ('domain-entities', 'create', '名称', 'name', 'text', null, null, null, false, false, false, false, false),
+       ('domain-entities', 'create', '描述', 'description', 'text', null, null, null, false, false, false, false, false),
+       ('domain-entities', 'list', '排序', 'sort', 'text', 60, null, null, true, false, true, true, false),
+       ('domain-entities', 'list', '#', 'sortValue', 'indexBorder', 60, null, null, true, false, true, true, false),
+       ('domain-entities', 'list', 'ID', 'id', 'text', 60, null, null, false, false, true, false, true),
+       ('domain-entities', 'list', '资源码', 'resource', 'select', null, null, null, false, false, false, false, false),
+       ('domain-entities', 'list', '名称', 'name', 'text', null, null, null, false, false, false, false, false),
+       ('domain-entities', 'list', '描述', 'description', 'text', null, null, null, false, false, false, false, false),
+       ('domain-entities', 'list', '创建时间', 'created', 'dateTime', null, null, null, false, false, true, false, true),
+       ('domain-entities', 'list', '最后修改时间', 'lastModified', 'dateTime', null, null, null, false, false, true, false, true);
 
 set @view_value_enums = '[
     {
@@ -74,16 +78,16 @@ set @view_value_enums = '[
 ]';
 
 # Columns
-INSERT INTO `column`(resource, title, data_index, value_type, width, sorter, default_sort_order, hide_in_form, hide_in_table,
+INSERT INTO `column`(resource, view, title, data_index, value_type, width, sorter, default_sort_order, hide_in_form, hide_in_table,
                      hide_in_search, hide_in_descriptions, readonly, value_enum)
-VALUES ('columns', '排序', 'sort', 'text', 60, null, null, true, true, true, true, true, null),
-       ('columns', '#', 'sortValue', 'indexBorder', 60, true, 'ascend', true, false, true, true, false, null),
-       ('columns', '标题', 'title', 'text', null, null, null, false, false, false, false, false, null),
-       ('columns', 'valueType', 'valueType', 'text', null, null, null, false, false, false, false, false, null),
-       ('columns', '视图', 'view', 'select', null, null, null, false, false, false, false, false, @view_value_enums),
-       ('columns', '描述', 'description', 'text', null, null, null, false, false, false, false, false, null),
-       ('columns', '创建时间', 'created', 'dateTime', null, null, null, false, false, true, false, true, null),
-       ('columns', '最后修改时间', 'lastModified', 'dateTime', null, null, null, false, false, true, false, true, null);
+VALUES ('columns', 'create', '排序', 'sort', 'text', 60, null, null, true, true, true, true, true, null),
+       ('columns', 'create', '#', 'sortValue', 'indexBorder', 60, true, 'ascend', true, false, true, true, false, null),
+       ('columns', 'create', '标题', 'title', 'text', null, null, null, false, false, false, false, false, null),
+       ('columns', 'create', 'valueType', 'valueType', 'text', null, null, null, false, false, false, false, false, null),
+       ('columns', 'create', '视图', 'view', 'select', null, null, null, false, false, false, false, false, @view_value_enums),
+       ('columns', 'create', '描述', 'description', 'text', null, null, null, false, false, false, false, false, null),
+       ('columns', 'create', '创建时间', 'created', 'dateTime', null, null, null, false, false, true, false, true, null),
+       ('columns', 'create', '最后修改时间', 'lastModified', 'dateTime', null, null, null, false, false, true, false, true, null);
 
 set @type_value_enum = '[
     {
@@ -93,19 +97,19 @@ set @type_value_enum = '[
 ]';
 
 INSERT INTO `column`(resource, title, data_index, value_type, width, sorter, default_sort_order, hide_in_form, hide_in_table,
-                     hide_in_search, hide_in_descriptions, readonly, tip_title, tip_icon,value_enum)
-VALUES ('actions', '排序', 'sort', 'text', 60, null, null, false, false, true, false, false, null, null,null),
-       ('actions', '#', 'sortValue', 'indexBorder', 60, true, 'ascend', false, false, true, false, false, null, null,null),
-       ('actions', '资源', 'resource', 'text', null, null, null, false, false, false, false, false, null, null,null),
-       ('actions', '编码', 'code', 'text', null, null, null, false, false, false, false, false, null, null,null),
-       ('actions', '名称', 'name', 'text', null, null, null, false, false, false, false, false, null, null,null),
-       ('actions', '类型', 'type', 'select', null, null, null, false, false, false, false, false, null, null,@type_value_enum),
-       ('actions', 'Tips', 'tips', 'text', null, null, null, false, false, false, false, false, null, null,null),
-       ('actions', '表达式', 'eval', 'code', null, null, null, false, false, false, false, false,null,
+                     hide_in_search, hide_in_descriptions, readonly, tip_title, tip_icon, value_enum)
+VALUES ('actions', '排序', 'sort', 'text', 60, null, null, false, false, true, false, false, null, null, null),
+       ('actions', '#', 'sortValue', 'indexBorder', 60, true, 'ascend', false, false, true, false, false, null, null, null),
+       ('actions', '资源', 'resource', 'text', null, null, null, false, false, false, false, false, null, null, null),
+       ('actions', '编码', 'code', 'text', null, null, null, false, false, false, false, false, null, null, null),
+       ('actions', '名称', 'name', 'text', null, null, null, false, false, false, false, false, null, null, null),
+       ('actions', '类型', 'type', 'select', null, null, null, false, false, false, false, false, null, null, @type_value_enum),
+       ('actions', 'Tips', 'tips', 'text', null, null, null, false, false, false, false, false, null, null, null),
+       ('actions', '表达式', 'eval', 'code', null, null, null, false, false, false, false, false, null,
         '可操作表达式，您可以使用`entity.属性名`来访问记录属性', null),
-       ('actions', '描述', 'description', 'text', null, null, null, false, false, false, false, false, null, null,null),
-       ('actions', '创建时间', 'created', 'dateTime', null, null, null, false, false, true, false, false, null, null,null),
-       ('actions', '最后修改时间', 'lastModified', 'dateTime', null, null, null, false, false, true, false, false, null, null,null);
+       ('actions', '描述', 'description', 'text', null, null, null, false, false, false, false, false, null, null, null),
+       ('actions', '创建时间', 'created', 'dateTime', null, null, null, false, false, true, false, false, null, null, null),
+       ('actions', '最后修改时间', 'lastModified', 'dateTime', null, null, null, false, false, true, false, false, null, null, null);
 
 
 INSERT INTO `column` (resource, title, data_index, value_type, width, sorter, default_sort_order, hide_in_form, hide_in_table,

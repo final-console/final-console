@@ -18,13 +18,10 @@ import org.ifinalframework.admin.model.antd.ToolTip;
 import org.ifinalframework.admin.repository.resource.query.QAction;
 import org.ifinalframework.admin.repository.resource.query.QColumn;
 import org.ifinalframework.data.query.Query;
-import org.ifinalframework.json.Json;
 
 import jakarta.annotation.Resource;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -86,7 +83,7 @@ public class UiController {
             actionColumn.setTitle("操作");
             actionColumn.setValueType("option");
             actionColumn.setActions(actions.stream().map(it -> {
-                final ProColumns.Action action = new ProColumns.Action();
+                final org.ifinalframework.admin.model.antd.Action action = new org.ifinalframework.admin.model.antd.Action();
                 BeanUtils.copyProperties(it, action);
                 action.setKey(it.getCode());
                 return action;

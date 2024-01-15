@@ -15,6 +15,8 @@ import lombok.Setter;
 @Setter
 @Getter
 public class ProColumns implements Serializable {
+
+    private String view;
     private String title;
     private String[] dataIndex;
     private ToolTip tooltip;
@@ -66,19 +68,4 @@ public class ProColumns implements Serializable {
         private Boolean required = true;
     }
 
-    /**
-     * Action
-     *
-     * @author mik
-     * @since 1.5.5
-     **/
-    @Getter
-    @Setter
-    public static class Action implements Serializable {
-        private String key;
-        private String name;
-        private String type;
-        private String tips;
-        private String eval;
-    }
 }
