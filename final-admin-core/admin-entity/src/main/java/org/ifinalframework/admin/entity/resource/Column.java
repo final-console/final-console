@@ -1,7 +1,7 @@
 package org.ifinalframework.admin.entity.resource;
 
+import org.ifinalframework.core.INode;
 import org.ifinalframework.core.ISort;
-import org.ifinalframework.core.ITree;
 import org.ifinalframework.core.lang.Default;
 import org.ifinalframework.core.lang.Transient;
 import org.ifinalframework.data.annotation.AbsRecord;
@@ -27,7 +27,7 @@ import lombok.Setter;
 @Getter
 @DomainResource("columns")
 @Table("`column`")
-public class Column extends AbsRecord implements ISort , ITree<Column> {
+public class Column extends AbsRecord implements ISort, INode<Long, Column> {
     /**
      * 资源
      */
@@ -80,5 +80,6 @@ public class Column extends AbsRecord implements ISort , ITree<Column> {
     @Transient
     private List<Column> children;
     @Json
-    private List<Map<String,String>> valueEnum;
+    private List<Map<String, String>> valueEnum;
+
 }

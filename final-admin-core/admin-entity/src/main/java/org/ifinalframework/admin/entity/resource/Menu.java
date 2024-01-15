@@ -1,7 +1,7 @@
 package org.ifinalframework.admin.entity.resource;
 
+import org.ifinalframework.core.INode;
 import org.ifinalframework.core.ISort;
-import org.ifinalframework.core.ITree;
 import org.ifinalframework.core.lang.Transient;
 import org.ifinalframework.data.annotation.AbsRecord;
 import org.ifinalframework.data.annotation.DomainResource;
@@ -20,7 +20,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @DomainResource("menus")
-public class Menu extends AbsRecord implements ISort, ITree<Menu> {
+public class Menu extends AbsRecord implements ISort, INode<Long, Menu> {
     private String code;
     private String name;
     private String path;
