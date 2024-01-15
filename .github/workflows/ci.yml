@@ -71,7 +71,7 @@ jobs:
       - name: Docker Build And Push
         uses: docker/build-push-action@v5
         with:
-          context: ./final-sso/final-sso-app/target
+          context: ./final-sso/final-sso-app
           push: true
           tags: final-apps/final-sso-app:${{ env.VERSION }}
       - name: 部署
