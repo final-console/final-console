@@ -63,7 +63,7 @@ jobs:
       - name: Build with Maven
         run: mvn -B package --file pom.xml -Dmaven.test.skip=true
       - name: 登录Docker镜像源
-        uses: docker/login-action@main
+        uses: docker/login-action@v3
         with:
           registry: ${{ secrets.DOCKER_REGISTRY }}
           username: ${{ secrets.DOCKER_USERNAME }}
