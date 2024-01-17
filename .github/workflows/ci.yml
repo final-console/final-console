@@ -94,9 +94,9 @@ jobs:
           username: ${{ secrets.KUBOARD_USERNAME }}
           access-key: ${{ secrets.KUBOARD_ACCESS_KEY }}
           cluster: default
-          namespace: $namespace
-          app-name: $app
-          image: ${{ secrets.DOCKER_REGISTRY }}/$organization/$app
+          namespace: ${{ env.namespace }}
+          app-name: ${{ env.app }}
+          image: ${{ secrets.DOCKER_REGISTRY }}/${{ env.organization }}/${{ env.app }}
           version: ${{ env.VERSION }}
       # 部署 final-admin-app
       - name: final-admin-app
@@ -106,11 +106,11 @@ jobs:
         env:
           app: final-admin-app
         with:
-          context: ./final-admin/$app
+          context: ./final-sso/${{ env.app }}
           push: true
           tags: |
-            ${{ secrets.DOCKER_REGISTRY }}/$organization/$app:latest
-            ${{ secrets.DOCKER_REGISTRY }}/$organization/$app:${{ env.VERSION }}
+            ${{ secrets.DOCKER_REGISTRY }}/${{ env.organization }}/${{ env.app }}:latest
+            ${{ secrets.DOCKER_REGISTRY }}/${{ env.organization }}/${{ env.app }}:${{ env.VERSION }}
       - name: 部署
         uses: final-actions/kuboard-cicd@main
         env:
@@ -120,8 +120,8 @@ jobs:
           username: ${{ secrets.KUBOARD_USERNAME }}
           access-key: ${{ secrets.KUBOARD_ACCESS_KEY }}
           cluster: default
-          namespace: $namespace
-          app-name: $app
-          image: ${{ secrets.DOCKER_REGISTRY }}/$organization/$app
+          namespace: ${{ env.namespace }}
+          app-name: ${{ env.app }}
+          image: ${{ secrets.DOCKER_REGISTRY }}/${{ env.organization }}/${{ env.app }}
           version: ${{ env.VERSION }}
 
