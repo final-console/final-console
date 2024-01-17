@@ -25,7 +25,7 @@ spring:
       enable: true
     user-class: org.ifinalframework.console.sso.domain.security.SecurityUser
   flyway:
-    schemas: admin
+    schemas: ${MYSQL_DATABASE}
     clean-schema-history-on-after-migrate-operation-finish: true
     enabled: true
 final.security.user-class: ${spring.security.user-class}

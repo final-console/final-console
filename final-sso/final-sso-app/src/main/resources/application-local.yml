@@ -5,7 +5,7 @@ spring:
     username: ${MYSQL_USERNAME}
     password: ${MYSQL_PASSWORD}
   flyway:
-    schemas: admin
+    schemas: sso
     clean-schema-history-on-after-migrate-operation-finish: true
     enabled: true
 logging:
