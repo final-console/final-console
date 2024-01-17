@@ -7,23 +7,7 @@ spring:
     username: ${MYSQL_USERNAME:root}
     password: ${MYSQL_PASSWORD}
   security:
-    basic:
-      enable: true
-    bearer:
-      enable: false
-    remember-me:
-      enable: true
-      always-remember: true
-    anonymous:
-      enable: true
-      authorities:
-        - 'default:tags:list'
-        - 'default:organizations:list'
-        - 'default:students:create'
-        - 'default:app-versions:create'
-    logout:
-      enable: true
-    user-class: org.ifinalframework.admin.domain.security.SecurityUser
+    user-class: org.ifinalframework.console.sso.model.User
   flyway:
     schemas: admin
     clean-schema-history-on-after-migrate-operation-finish: true

@@ -4,12 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.ifinalframework.console.sso</groupId>
-        <artifactId>final-sso</artifactId>
+        <groupId>org.ifinalframework.console.admin</groupId>
+        <artifactId>final-admin</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>final-sso-app</artifactId>
+    <groupId>org.ifinalframework.console.sso</groupId>
+    <artifactId>final-admin-app</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -20,23 +21,26 @@
     <dependencies>
         <dependency>
             <groupId>org.ifinalframework.console.sso</groupId>
-            <artifactId>final-sso-api</artifactId>
+            <artifactId>final-sso-sdk</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.ifinalframework.boot</groupId>
+            <artifactId>final-boot-starter-security</artifactId>
         </dependency>
         <dependency>
             <groupId>org.ifinalframework.boot</groupId>
             <artifactId>final-boot-starter-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.ifinalframework.security</groupId>
-            <artifactId>final-security-sso-server</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-mysql</artifactId>
         </dependency>
     </dependencies>
+
+
     <build>
-        <finalName>${project.artifactId}</finalName>
+        <finalName>${artifactId}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -44,5 +48,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

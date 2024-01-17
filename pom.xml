@@ -21,7 +21,6 @@
         <module>final-admin</module>
         <module>final-sso</module>
         <module>final-app</module>
-        <module>final-sso/final-sso-model</module>
     </modules>
     <properties>
         <java.version>17</java.version>

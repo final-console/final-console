@@ -14,6 +14,10 @@ on:
     types:
       - published
 
+env:
+  namespace: ifinal
+  organization: final-apps
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -68,23 +72,56 @@ jobs:
           registry: ${{ secrets.DOCKER_REGISTRY }}
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+      # 部署 final-sso-app
+      - name: final-sso-app
+        run: echo "final-sso-app"
       - name: Docker Build And Push
         uses: docker/build-push-action@v5
+        env:
+          app: final-sso-app
         with:
-          context: ./final-sso/final-sso-app
+          context: ./final-sso/$app
           push: true
           tags: |
-            ${{ secrets.DOCKER_REGISTRY }}/final-apps/final-sso-app:latest
-            ${{ secrets.DOCKER_REGISTRY }}/final-apps/final-sso-app:${{ env.VERSION }}
+            ${{ secrets.DOCKER_REGISTRY }}/$organization/$app:latest
+            ${{ secrets.DOCKER_REGISTRY }}/$organization/$app:${{ env.VERSION }}
       - name: 部署
         uses: final-actions/kuboard-cicd@main
+        env:
+          app: final-sso-app
         with:
           host: ${{ secrets.KUBOARD_HOST }}
           username: ${{ secrets.KUBOARD_USERNAME }}
           access-key: ${{ secrets.KUBOARD_ACCESS_KEY }}
           cluster: default
-          namespace: ifinal
-          app-name: final-sso-app
-          image: ${{ secrets.DOCKER_REGISTRY }}/final-console/final-sso-app
+          namespace: $namespace
+          app-name: $app
+          image: ${{ secrets.DOCKER_REGISTRY }}/$organization/$app
+          version: ${{ env.VERSION }}
+      # 部署 final-admin-app
+      - name: final-admin-app
+        run: echo "final-admin-app"
+      - name: Docker Build And Push
+        uses: docker/build-push-action@v5
+        env:
+          app: final-admin-app
+        with:
+          context: ./final-admin/$app
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_REGISTRY }}/$organization/$app:latest
+            ${{ secrets.DOCKER_REGISTRY }}/$organization/$app:${{ env.VERSION }}
+      - name: 部署
+        uses: final-actions/kuboard-cicd@main
+        env:
+          app: final-admin-app
+        with:
+          host: ${{ secrets.KUBOARD_HOST }}
+          username: ${{ secrets.KUBOARD_USERNAME }}
+          access-key: ${{ secrets.KUBOARD_ACCESS_KEY }}
+          cluster: default
+          namespace: $namespace
+          app-name: $app
+          image: ${{ secrets.DOCKER_REGISTRY }}/$organization/$app
           version: ${{ env.VERSION }}
 

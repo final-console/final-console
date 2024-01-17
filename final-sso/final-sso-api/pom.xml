@@ -34,6 +34,10 @@
             <groupId>org.ifinalframework.console.sso</groupId>
             <artifactId>final-sso-domain</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.ifinalframework.console.sso</groupId>
+            <artifactId>final-sso-model</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

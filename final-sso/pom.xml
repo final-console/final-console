@@ -14,11 +14,13 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>final-sso-model</module>
         <module>final-sso-entity</module>
         <module>final-sso-repository</module>
         <module>final-sso-domain</module>
         <module>final-sso-api</module>
         <module>final-sso-app</module>
+        <module>final-sso-sdk</module>
     </modules>
 
     <properties>
@@ -29,6 +31,11 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.ifinalframework.console.sso</groupId>
+                <artifactId>final-sso-model</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
             <dependency>
                 <groupId>org.ifinalframework.console.sso</groupId>
                 <artifactId>final-sso-entity</artifactId>
