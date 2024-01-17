@@ -84,7 +84,7 @@ jobs:
           access-key: ${{ secrets.KUBOARD_ACCESS_KEY }}
           cluster: default
           namespace: ifinal
-          app-name: final-admin
+          app-name: final-sso-app
           image: ${{ secrets.DOCKER_REGISTRY }}/final-console/final-sso-app
           version: ${{ env.VERSION }}
 

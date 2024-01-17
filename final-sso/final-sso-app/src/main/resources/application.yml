@@ -3,8 +3,8 @@ spring:
     active: ${SPRING_PROFILE_ACTIVE:default}
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:sso}?useSSL=false&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false&useTimezone=true&serverTimezone=Asia/Shanghai&connectTimeout=2000&socketTimeout=600000&allowPublicKeyRetrieval=true
-    username: ${MYSQL_USERNAME:root}
+    url: jdbc:mysql://${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DATABASE}?useSSL=false&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false&useTimezone=true&serverTimezone=Asia/Shanghai&connectTimeout=2000&socketTimeout=600000&allowPublicKeyRetrieval=true
+    username: ${MYSQL_USERNAME}
     password: ${MYSQL_PASSWORD}
   security:
     basic:
