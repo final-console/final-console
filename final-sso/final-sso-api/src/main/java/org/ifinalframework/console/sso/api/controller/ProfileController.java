@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 1.5.6
  **/
 @RestController
-@RequestMapping("/profile")
+@RequestMapping("/api/profile")
 public class ProfileController {
     @GetMapping
     @PreAuthorize("isAuthenticated()")
