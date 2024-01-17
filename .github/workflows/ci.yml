@@ -80,7 +80,7 @@ jobs:
         env:
           app: final-sso-app
         with:
-          context: ./final-sso/$app
+          context: ./final-sso/${{ env.app }}
           push: true
           tags: |
             ${{ secrets.DOCKER_REGISTRY }}/${{ env.organization }}/${{ env.app }}:latest
