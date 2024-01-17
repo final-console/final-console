@@ -106,7 +106,7 @@ jobs:
         env:
           app: final-admin-app
         with:
-          context: ./final-sso/${{ env.app }}
+          context: ./final-admin/${{ env.app }}
           push: true
           tags: |
             ${{ secrets.DOCKER_REGISTRY }}/${{ env.organization }}/${{ env.app }}:latest
