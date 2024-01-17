@@ -8,6 +8,14 @@ spring:
     password: ${MYSQL_PASSWORD}
   security:
     user-class: org.ifinalframework.console.sso.model.User
+    basic:
+      enable: false
+    bearer:
+      enable: false
+    remember-me:
+      enable: false
+    anonymous:
+      enable: false
   flyway:
     schemas: ${MYSQL_DATABASE}
     clean-schema-history-on-after-migrate-operation-finish: true
