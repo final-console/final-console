@@ -1,0 +1,129 @@
+# This workflow will build a Java project with Maven
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+# This workflow will build a Java project with Maven
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
+name: ci
+
+runs-on: self-hosted
+
+on:
+  push:
+    branches: [ ]
+  pull_request:
+    branches: [ ]
+  release:
+    types:
+      - published
+
+env:
+  namespace: ifinal
+  organization: final-apps
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show GitHub Context
+        run: echo "${{ toJson(github) }}"
+      - name: 设置环境变量
+        uses: final-actions/set-up-env@main
+        with:
+          docker: true
+          docker-registry: ${{ secrets.DOCKER_REGISTRY }}
+      - name: 检出存储库
+        uses: actions/checkout@v2
+      - name: Set up JDK 17
+        uses: actions/setup-java@v1
+        with:
+          java-version: 17
+      # 设置 Maven Settings
+      - name: maven-settings-xml-action
+        uses: whelk-io/maven-settings-xml-action@v21
+        with:
+          repositories: >
+            [
+              {
+                "id": "ossrh-releases",
+                "name": "ossrh releases",
+                "url": "https://s01.oss.sonatype.org/content/repositories/releases/",
+                "releases": {
+                  "enabled": "true"
+                },
+                "snapshots": {
+                  "enabled": "false"
+                }
+              },
+              {
+                "id": "ossrh-snapshots",
+                "name": "ossrh snapshots",
+                "url": "https://s01.oss.sonatype.org/content/repositories/snapshots/",
+                "releases": {
+                  "enabled": "false"
+                },
+                "snapshots": {
+                  "enabled": "true"
+                }
+              }
+            ]
+      - name: Build with Maven
+        run: mvn -B package --file pom.xml -Dmaven.test.skip=true
+      - name: 登录Docker镜像源
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ secrets.DOCKER_REGISTRY }}
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      # 部署 final-sso-app
+      - name: final-sso-app
+        run: echo "final-sso-app"
+      - name: Docker Build And Push
+        uses: docker/build-push-action@v5
+        env:
+          app: final-sso-app
+        with:
+          context: ./final-sso/${{ env.app }}
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_REGISTRY }}/${{ env.organization }}/${{ env.app }}:latest
+            ${{ secrets.DOCKER_REGISTRY }}/${{ env.organization }}/${{ env.app }}:${{ env.VERSION }}
+      - name: 部署
+        uses: final-actions/kuboard-cicd@main
+        env:
+          app: final-sso-app
+        with:
+          host: ${{ secrets.KUBOARD_HOST }}
+          username: ${{ secrets.KUBOARD_USERNAME }}
+          access-key: ${{ secrets.KUBOARD_ACCESS_KEY }}
+          cluster: default
+          namespace: ${{ env.namespace }}
+          app-name: ${{ env.app }}
+          image: ${{ secrets.DOCKER_REGISTRY }}/${{ env.organization }}/${{ env.app }}
+          version: ${{ env.VERSION }}
+      # 部署 final-admin-app
+      - name: final-admin-app
+        run: echo "final-admin-app"
+      - name: Docker Build And Push
+        uses: docker/build-push-action@v5
+        env:
+          app: final-admin-app
+        with:
+          context: ./final-admin/${{ env.app }}
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_REGISTRY }}/${{ env.organization }}/${{ env.app }}:latest
+            ${{ secrets.DOCKER_REGISTRY }}/${{ env.organization }}/${{ env.app }}:${{ env.VERSION }}
+      - name: 部署
+        uses: final-actions/kuboard-cicd@main
+        env:
+          app: final-admin-app
+        with:
+          host: ${{ secrets.KUBOARD_HOST }}
+          username: ${{ secrets.KUBOARD_USERNAME }}
+          access-key: ${{ secrets.KUBOARD_ACCESS_KEY }}
+          cluster: default
+          namespace: ${{ env.namespace }}
+          app-name: ${{ env.app }}
+          image: ${{ secrets.DOCKER_REGISTRY }}/${{ env.organization }}/${{ env.app }}
+          version: ${{ env.VERSION }}
+
