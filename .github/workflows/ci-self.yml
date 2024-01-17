@@ -5,8 +5,6 @@
 
 name: ci
 
-runs-on: self-hosted
-
 on:
   push:
     branches: [ ]
@@ -22,7 +20,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Show GitHub Context
         run: echo "${{ toJson(github) }}"
