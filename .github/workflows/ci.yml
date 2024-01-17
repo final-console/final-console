@@ -83,8 +83,8 @@ jobs:
           context: ./final-sso/$app
           push: true
           tags: |
-            ${{ secrets.DOCKER_REGISTRY }}/$organization/$app:latest
-            ${{ secrets.DOCKER_REGISTRY }}/$organization/$app:${{ env.VERSION }}
+            ${{ secrets.DOCKER_REGISTRY }}/${{ env.organization }}/${{ env.app }}:latest
+            ${{ secrets.DOCKER_REGISTRY }}/${{ env.organization }}/${{ env.app }}:${{ env.VERSION }}
       - name: 部署
         uses: final-actions/kuboard-cicd@main
         env:
