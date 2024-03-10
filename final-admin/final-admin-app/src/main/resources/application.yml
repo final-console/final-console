@@ -1,6 +1,8 @@
 spring:
   profiles:
     active: ${SPRING_PROFILE_ACTIVE:default}
+  application:
+    name: final-admin-app
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DATABASE}?useSSL=false&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false&useTimezone=true&serverTimezone=Asia/Shanghai&connectTimeout=2000&socketTimeout=600000&allowPublicKeyRetrieval=true
