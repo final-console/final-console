@@ -6,6 +6,10 @@ spring:
     url: jdbc:mysql://${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DATABASE}?useSSL=false&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false&useTimezone=true&serverTimezone=Asia/Shanghai&connectTimeout=2000&socketTimeout=600000&allowPublicKeyRetrieval=true
     username: ${MYSQL_USERNAME}
     password: ${MYSQL_PASSWORD}
+  web:
+    request-uri-rewrite:
+      prefix: /api/sso
+      replacement: /api
   security:
     basic:
       enable: true

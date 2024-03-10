@@ -20,4 +20,8 @@ spring:
     schemas: ${MYSQL_DATABASE}
     clean-schema-history-on-after-migrate-operation-finish: true
     enabled: true
+  web:
+    request-uri-rewrite:
+      prefix: /api/admin
+      replacement: /api
 final.security.user-class: ${spring.security.user-class}
