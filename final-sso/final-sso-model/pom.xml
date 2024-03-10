@@ -19,8 +19,16 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.ifinalframework.security</groupId>
-            <artifactId>final-security-sso</artifactId>
+            <groupId>org.ifinalframework.annotation</groupId>
+            <artifactId>final-annotation-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.ifinalframework.boot</groupId>
+            <artifactId>final-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.ifinalframework</groupId>
+            <artifactId>final-security</artifactId>
         </dependency>
     </dependencies>
 
