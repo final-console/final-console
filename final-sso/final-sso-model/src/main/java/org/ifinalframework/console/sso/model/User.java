@@ -2,6 +2,8 @@ package org.ifinalframework.console.sso.model;
 
 import org.ifinalframework.core.IUser;
 
+import java.io.Serializable;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,7 +16,7 @@ import lombok.Setter;
  **/
 @Getter
 @Setter
-public class User implements IUser<Long> {
+public class User implements IUser<Long>, Serializable {
     private Long id;
     private String name;
 }
