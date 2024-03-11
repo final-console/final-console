@@ -13,7 +13,7 @@ import org.ifinalframework.core.result.Result;
  * @author iimik
  * @since 1.5.6
  **/
-@FeignClient(url = "${feign.client.url:http://localhost:8080}")
+@FeignClient
 public interface FeignRemoteAuthenticationClient {
     @GetMapping("/api/sso/authentication")
     Result<Authentication> authentication();

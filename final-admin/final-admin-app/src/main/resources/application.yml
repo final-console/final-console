@@ -26,5 +26,8 @@ spring:
     request-uri-rewrite:
       prefix: /api/admin
       replacement: /api
+  cloud:
+    openfeign:
+      gateway:
+        url: https://api.iimik.com
 final.security.user-class: ${spring.security.user-class}
-feign.client.url: https://api.iimik.com
