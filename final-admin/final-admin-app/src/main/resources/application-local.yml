@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: 8080
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -13,3 +13,4 @@ spring:
 logging:
   level:
     org.ifinalframework.admin.repository: debug
+feign.client.url: https://api.iimik.com

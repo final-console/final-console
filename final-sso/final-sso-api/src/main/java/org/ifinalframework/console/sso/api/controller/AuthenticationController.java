@@ -41,13 +41,11 @@ public class AuthenticationController {
 
     @Resource
     private AuthenticationService authenticationService;
-    @Resource
-    private AuthenticationEncoder authenticationEncoder;
 
     @GetMapping
     @PreAuthorize("isAuthenticated()")
-    public String authentication(@RequestHeader(value = "X-SERVICE", required = false) String service, IUser<?> user) {
+    public Authentication authentication(@RequestHeader(value = "X-SERVICE", required = false) String service, IUser<?> user) {
         final Authentication authentication = authenticationService.lode(service, user);
-        return authenticationEncoder.encode(authentication);
+        return authentication;
     }
 }

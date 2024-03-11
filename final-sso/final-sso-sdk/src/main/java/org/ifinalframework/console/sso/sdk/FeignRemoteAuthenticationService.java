@@ -5,10 +5,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
-import org.springframework.validation.SimpleErrors;
 
 import org.ifinalframework.core.result.Result;
-import org.ifinalframework.security.sso.authentication.AuthenticationEncoder;
 import org.ifinalframework.security.web.authentication.www.RemoteAuthenticationService;
 
 import jakarta.annotation.Resource;
@@ -28,14 +26,12 @@ public class FeignRemoteAuthenticationService implements RemoteAuthenticationSer
 
     @Resource
     private FeignRemoteAuthenticationClient feignRemoteAuthenticationClient;
-    @Resource
-    private JsonAuthenticationDecoder jsonAuthenticationDecoder;
 
     @Override
     public Authentication load(HttpServletRequest request) {
-        final Result<String> result = feignRemoteAuthenticationClient.authentication();
-        final org.ifinalframework.security.sso.authentication.Authentication authentication = jsonAuthenticationDecoder.decode(result.getData());
-        final List<String> authorities = authentication.getAuthorities();
-        return new UsernamePasswordAuthenticationToken(authentication.getUser(),null,         authorities.stream().map(it -> new SimpleGrantedAuthority((String) it)).collect(Collectors.toList()));
+        final Result<org.ifinalframework.console.sso.model.Authentication> result = feignRemoteAuthenticationClient.authentication();
+        final org.ifinalframework.console.sso.model.Authentication authentication = result.getData();
+        final List<SimpleGrantedAuthority> authorities = authentication.getAuthorities().stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
+        return new UsernamePasswordAuthenticationToken(authentication.getUser(), null, authorities);
     }
 }
