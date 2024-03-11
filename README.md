@@ -10,6 +10,8 @@ SSO（Single Sign On）即单点登录，是指在多个应用系统中，用户
 
 ### Final Admin
 
+管理台，用于管理菜单
+
 ## API网关配置
 
 |      前缀      |      服务       |   |
