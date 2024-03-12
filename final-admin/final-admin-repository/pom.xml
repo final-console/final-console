@@ -20,7 +20,7 @@
     <dependencies>
         <dependency>
             <groupId>org.ifinalframework.console.admin</groupId>
-            <artifactId>final-admin-domain</artifactId>
+            <artifactId>final-admin-entity</artifactId>
         </dependency>
         <dependency>
             <groupId>org.ifinalframework.boot</groupId>
