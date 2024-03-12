@@ -29,6 +29,7 @@ public class FeignRemoteAuthenticationService implements RemoteAuthenticationSer
 
     @Override
     public Authentication load(HttpServletRequest request) {
+        
         final Result<org.ifinalframework.console.sso.model.Authentication> result = feignRemoteAuthenticationClient.authentication();
         final org.ifinalframework.console.sso.model.Authentication authentication = result.getData();
         final List<SimpleGrantedAuthority> authorities = authentication.getAuthorities().stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
