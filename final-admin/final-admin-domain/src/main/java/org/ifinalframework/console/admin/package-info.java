@@ -4,8 +4,8 @@
  * @author iimik
  * @since 1.6.0
  **/
-@AutoService
 @AutoQuery
+@AutoService
 package org.ifinalframework.console.admin;
 
 import org.ifinalframework.data.auto.annotation.AutoQuery;

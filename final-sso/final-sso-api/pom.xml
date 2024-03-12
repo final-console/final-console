@@ -19,6 +19,10 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.ifinalframework.console.sso</groupId>
+            <artifactId>final-sso-domain</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.ifinalframework.boot</groupId>
             <artifactId>final-boot-starter-web</artifactId>
         </dependency>
@@ -29,10 +33,6 @@
         <dependency>
             <groupId>org.ifinalframework.boot</groupId>
             <artifactId>final-boot-starter-security</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.ifinalframework.console.sso</groupId>
-            <artifactId>final-sso-domain</artifactId>
         </dependency>
         <dependency>
             <groupId>org.ifinalframework.console.sso</groupId>

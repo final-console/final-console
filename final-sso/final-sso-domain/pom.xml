@@ -20,6 +20,10 @@
     <dependencies>
         <dependency>
             <groupId>org.ifinalframework.console.sso</groupId>
+            <artifactId>final-sso-repository</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.ifinalframework.console.sso</groupId>
             <artifactId>final-sso-model</artifactId>
         </dependency>
         <dependency>
