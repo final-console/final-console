@@ -9,8 +9,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <groupId>org.ifinalframework.console.sso</groupId>
-    <artifactId>final-admin-app</artifactId>
+    <artifactId>final-admin-api</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -21,35 +20,12 @@
     <dependencies>
         <dependency>
             <groupId>org.ifinalframework.console.admin</groupId>
-            <artifactId>final-admin-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.ifinalframework.console.sso</groupId>
-            <artifactId>final-sso-sdk</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.ifinalframework.boot</groupId>
-            <artifactId>final-boot-starter-security</artifactId>
+            <artifactId>final-admin-domain</artifactId>
         </dependency>
         <dependency>
             <groupId>org.ifinalframework.boot</groupId>
             <artifactId>final-boot-starter-web</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-mysql</artifactId>
-        </dependency>
     </dependencies>
 
-
-    <build>
-        <finalName>${artifactId}</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 </project>

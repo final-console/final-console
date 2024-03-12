@@ -16,6 +16,7 @@
         <module>final-admin-entity</module>
         <module>final-admin-domain</module>
         <module>final-admin-repository</module>
+        <module>final-admin-api</module>
         <module>final-admin-app</module>
     </modules>
 
@@ -40,6 +41,11 @@
             <dependency>
                 <groupId>org.ifinalframework.console.admin</groupId>
                 <artifactId>final-admin-domain</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.ifinalframework.console.admin</groupId>
+                <artifactId>final-admin-api</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
             <dependency>
