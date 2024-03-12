@@ -13,6 +13,9 @@
     <artifactId>final-admin</artifactId>
     <packaging>pom</packaging>
     <modules>
+        <module>final-admin-entity</module>
+        <module>final-admin-domain</module>
+        <module>final-admin-repository</module>
         <module>final-admin-app</module>
     </modules>
 
@@ -21,6 +24,31 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.ifinalframework.console.admin</groupId>
+                <artifactId>final-admin-entity</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.ifinalframework.console.admin</groupId>
+                <artifactId>final-admin-repository</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.ifinalframework.console.admin</groupId>
+                <artifactId>final-admin-domain</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.ifinalframework.console.sso</groupId>
+                <artifactId>final-admin-app</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 
 </project>
