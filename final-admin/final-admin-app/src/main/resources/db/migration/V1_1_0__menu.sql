@@ -39,7 +39,8 @@ SET @menu_data = (SELECT id
                      FROM menu
                      WHERE code = 'data');
 INSERT INTO menu (code, path, name, icon, hide_menu, parent_id)
-VALUES ('data.cache', '/admin/data/cache', '缓存', 'setting', false, @menu_data);
+VALUES ('data.cache', '/admin/data/cache', '缓存', 'setting', false, @menu_data),
+       ('data.excel', '/admin/data/cache', 'Excel', 'setting', false, @menu_data);
 
 # SET @menu_domain_resources = (SELECT id
 #                   FROM menu

@@ -15,7 +15,7 @@ import lombok.Setter;
  **/
 @Getter
 @Setter
-public class Authentication implements org.ifinalframework.security.sso.authentication.Authentication<User>, Serializable {
+public class Authentication implements Serializable {
     private User user;
     private List<String> authorities;
 }

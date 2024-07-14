@@ -17,17 +17,18 @@ package org.ifinalframework.console.sso.api.controller;
 
 
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import org.ifinalframework.core.IUser;
-import org.ifinalframework.security.sso.authentication.Authentication;
-import org.ifinalframework.security.sso.authentication.AuthenticationEncoder;
-import org.ifinalframework.security.sso.authentication.AuthenticationService;
+import org.ifinalframework.console.sso.domain.security.SecurityUser;
+import org.ifinalframework.console.sso.model.Authentication;
+import org.ifinalframework.console.sso.model.User;
 
-import jakarta.annotation.Resource;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * AuthenticationController
@@ -39,13 +40,19 @@ import jakarta.annotation.Resource;
 @RequestMapping("/api/authentication")
 public class AuthenticationController {
 
-    @Resource
-    private AuthenticationService authenticationService;
 
     @GetMapping
     @PreAuthorize("isAuthenticated()")
-    public Authentication authentication(@RequestHeader(value = "X-SERVICE", required = false) String service, IUser<?> user) {
-        final Authentication authentication = authenticationService.lode(service, user);
+    public Authentication authentication(@RequestHeader(value = "X-SERVICE", required = false) String service, SecurityUser user) {
+        final List<String> authorities = user.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.toList());
+        final Authentication authentication = new Authentication();
+        final User targetUser = new User();
+        targetUser.setId(user.getId());
+        targetUser.setName(targetUser.getName());
+        authentication.setUser(targetUser);
+        authentication.setAuthorities(authorities);
         return authentication;
     }
 }
